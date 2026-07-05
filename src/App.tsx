@@ -12,6 +12,7 @@ import { RoadmapPage } from '@/modules/roadmap/pages/RoadmapPage';
 import { FeaturePage } from '@/modules/features/pages/FeaturePage';
 import { ContactPage } from '@/modules/contact/pages/ContactPage';
 import { DashboardPage } from '@/modules/dashboard/pages/DashboardPage';
+import { QuizPage } from '@/modules/quiz/pages/QuizPage';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
       </Route>
+      <Route path="/quiz/:skillId" element={<ProtectedRoute><QuizPage /></ProtectedRoute>} />
       <Route path="/logout" element={<LogoutPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
