@@ -13,5 +13,8 @@ export const progressApi = {
     http.post('/progress/enroll', { careerId, isEnrolled }),
     
   getDashboard: () => 
-    http.get('/progress/dashboard')
+    http.get('/progress/dashboard'),
+    
+  submitTest: (payload: any) =>
+    http.post('/test/submit', payload)
 };
