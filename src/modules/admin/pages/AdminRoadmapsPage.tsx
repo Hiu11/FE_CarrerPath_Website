@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { adminApi } from '../api/admin.api';
 import { DataTable } from '../components/DataTable';
 import { ConfirmDeleteModal } from '../components/ConfirmDeleteModal';
@@ -114,10 +114,13 @@ export const AdminRoadmapsPage = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="p-8 max-w-7xl mx-auto space-y-8 text-slate-200">
       <div>
-        <h1 className="text-2xl font-bold font-mono uppercase tracking-wider text-foreground">Roadmaps Management</h1>
-        <p className="text-sm font-mono text-muted-foreground mt-1">Manage learning roadmaps and their steps.</p>
+        <p className="text-sm font-bold text-slate-400 uppercase tracking-wide mb-1">
+          Admin &gt; Roadmaps
+        </p>
+        <h1 className="text-3xl font-extrabold text-white uppercase">Roadmaps Management</h1>
+        <p className="text-sm text-slate-400 mt-1">Manage learning roadmaps and their steps.</p>
       </div>
 
       <DataTable

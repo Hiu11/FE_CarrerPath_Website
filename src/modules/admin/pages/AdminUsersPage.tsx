@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { adminApi } from '../api/admin.api';
 import { DataTable } from '../components/DataTable';
 import { ConfirmDeleteModal } from '../components/ConfirmDeleteModal';
@@ -93,7 +93,7 @@ export const AdminUsersPage = () => {
       key: 'role', 
       header: 'Role',
       render: (item: User) => (
-        <span className={`px-2 py-1 text-xs font-bold font-mono tracking-wide rounded-[2px] ${item.role === 'Admin' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
+        <span className={`px-2.5 py-1 text-xs font-bold rounded-md ${item.role === 'Admin' ? 'bg-amber-400 text-black' : 'bg-slate-800 text-slate-300'}`}>
           {item.role || 'User'}
         </span>
       )
@@ -102,7 +102,7 @@ export const AdminUsersPage = () => {
       key: 'isEmailVerified', 
       header: 'Verified',
       render: (item: User) => (
-        <span className={`px-2 py-1 text-xs font-bold font-mono tracking-wide rounded-[2px] border ${item.isEmailVerified ? 'border-green-500 text-green-600 bg-green-50 dark:bg-green-950' : 'border-yellow-500 text-yellow-600 bg-yellow-50 dark:bg-yellow-950'}`}>
+        <span className={`px-2.5 py-1 text-xs font-bold rounded-md border ${item.isEmailVerified ? 'border-green-500/30 text-green-400 bg-green-500/10' : 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10'}`}>
           {item.isEmailVerified ? 'YES' : 'NO'}
         </span>
       )
@@ -110,10 +110,13 @@ export const AdminUsersPage = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="p-8 max-w-7xl mx-auto space-y-8 text-slate-200">
       <div>
-        <h1 className="text-2xl font-bold font-mono uppercase tracking-wider text-foreground">Users Management</h1>
-        <p className="text-sm font-mono text-muted-foreground mt-1">Manage user accounts and roles.</p>
+        <p className="text-sm font-bold text-slate-400 uppercase tracking-wide mb-1">
+          Admin &gt; Users
+        </p>
+        <h1 className="text-3xl font-extrabold text-white uppercase">Users Management</h1>
+        <p className="text-sm text-slate-400 mt-1">Manage user accounts and roles.</p>
       </div>
 
       <DataTable

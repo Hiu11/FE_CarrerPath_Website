@@ -15,10 +15,12 @@ import { DashboardPage } from '@/modules/dashboard/pages/DashboardPage';
 import { QuizPage } from '@/modules/quiz/pages/QuizPage';
 import { AdminRoute } from '@/modules/admin/components/AdminRoute';
 import { AdminLayout } from '@/modules/admin/pages/AdminLayout';
-import { AdminCareersPage } from '@/modules/admin/pages/AdminCareersPage';
 import { AdminSkillsPage } from '@/modules/admin/pages/AdminSkillsPage';
 import { AdminRoadmapsPage } from '@/modules/admin/pages/AdminRoadmapsPage';
 import { AdminUsersPage } from '@/modules/admin/pages/AdminUsersPage';
+import { CareerPathBuilderPage } from '@/modules/admin/pages/CareerPathBuilderPage';
+import { CareerPathsPage } from '@/modules/admin/pages/CareerPathsPage';
+import { AdminResourcesPage } from '@/modules/admin/pages/AdminResourcesPage';
 
 function App() {
   return (
@@ -44,11 +46,14 @@ function App() {
       
       {/* Admin routes */}
       <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
-        <Route path="careers" element={<AdminCareersPage />} />
+        <Route path="career-paths" element={<CareerPathsPage />} />
+        <Route path="career-paths/new" element={<CareerPathBuilderPage />} />
+        <Route path="career-paths/:id" element={<CareerPathBuilderPage />} />
         <Route path="skills" element={<AdminSkillsPage />} />
+        <Route path="resources" element={<AdminResourcesPage />} />
         <Route path="roadmaps" element={<AdminRoadmapsPage />} />
         <Route path="users" element={<AdminUsersPage />} />
-        <Route index element={<Navigate to="careers" replace />} />
+        <Route index element={<Navigate to="career-paths" replace />} />
       </Route>
 
       <Route path="/logout" element={<LogoutPage />} />
