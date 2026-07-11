@@ -50,11 +50,11 @@ export const AvatarUpload = ({ currentAvatarUrl, userInitials = '??', onUploadSu
         type="button"
         onClick={() => inputRef.current?.click()}
         disabled={uploading}
-        className="group relative cursor-pointer rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="group relative cursor-pointer rounded-full focus:outline-none transition-transform active:scale-95"
       >
-        <Avatar className="size-24 ring-2 ring-border transition group-hover:ring-primary">
+        <Avatar className="size-24 border-2 border-foreground shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_0px_rgba(250,250,250,0.15)] transition-all group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 group-hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] rounded-full">
           <AvatarImage src={previewUrl} alt="Profile avatar" />
-          <AvatarFallback className="text-xl">{userInitials}</AvatarFallback>
+          <AvatarFallback className="text-xl font-mono font-bold bg-muted text-foreground">{userInitials}</AvatarFallback>
         </Avatar>
 
         {/* Overlay */}
@@ -72,7 +72,7 @@ export const AvatarUpload = ({ currentAvatarUrl, userInitials = '??', onUploadSu
         )}
       </button>
 
-      <p className="text-xs text-muted-foreground">Click to upload (max 5MB)</p>
+      <p className="text-[10px] text-muted-foreground font-mono uppercase tracking-wider">Click to upload (max 5MB)</p>
 
       <input
         ref={inputRef}
