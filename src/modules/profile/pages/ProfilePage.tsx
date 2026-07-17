@@ -29,6 +29,7 @@ type ProfileUser = CurrentUser & {
   phone?: string;
   avatarUrl?: string;
   portfolios?: PortfolioItem[];
+  enableStudyReminder?: boolean;
 };
 
 export const ProfilePage = () => {
@@ -159,17 +160,18 @@ export const ProfilePage = () => {
 
         {/* Right Column: Edit Profile */}
         <div className="lg:col-span-2">
-          <Card className="border-2 border-foreground bg-card text-card-foreground rounded-[4px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,0.15)] h-full">
+          <Card className="border-2 border-foreground bg-card text-card-foreground rounded-[4px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,0.15)] h-full flex flex-col">
             <CardHeader className="border-b border-foreground/15 pb-4 mb-4">
               <CardTitle className="text-lg font-mono font-bold uppercase tracking-wider">Edit Profile</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-1 flex flex-col">
               {user ? (
                 <ProfileEditForm
                   defaultValues={{
                     displayName: user.displayName ?? '',
                     bio: user.bio ?? '',
                     phone: user.phone ?? '',
+                    enableStudyReminder: user.enableStudyReminder ?? false,
                   }}
                   onSuccess={fetchUser}
                 />

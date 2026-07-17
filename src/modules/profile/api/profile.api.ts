@@ -11,7 +11,7 @@ export interface PortfolioItem {
 }
 
 export const profileApi = {
-  updateProfile: (data: { displayName?: string; bio?: string; phone?: string }) =>
+  updateProfile: (data: { displayName?: string; bio?: string; phone?: string; enableStudyReminder?: boolean }) =>
     http.patch('/profile', data),
   uploadAvatar: (file: File) => {
     const formData = new FormData();
