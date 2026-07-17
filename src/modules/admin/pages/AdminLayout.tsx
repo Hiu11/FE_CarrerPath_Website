@@ -11,7 +11,7 @@ const navItems = [
   { name: 'Career Paths', path: '/admin/career-paths', icon: Route },
   { name: 'Skill Library', path: '/admin/skills', icon: BookOpen },
   { name: 'Resources', path: '/admin/resources', icon: FileText },
-  { name: 'Team Analytics', path: '/admin/analytics', icon: BarChart3 },
+  { name: 'Users Analytics', path: '/admin/analytics', icon: BarChart3 },
 ];
 
 export const AdminLayout = () => {
@@ -71,7 +71,7 @@ export const AdminLayout = () => {
             </NavLink>
           </div>
         </nav>
-        
+
         {/* Footer Navigation */}
         <div className="px-4 py-4 space-y-1 border-t border-sidebar-border">
           <NavLink to="/admin/settings" className="group flex items-center rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground">
@@ -88,14 +88,14 @@ export const AdminLayout = () => {
 
         {/* User Card */}
         <div className="p-4 border-t border-sidebar-border">
-          <div 
+          <div
             onClick={() => navigate('/profile')}
             className="flex items-center gap-3 rounded-xl p-2 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors cursor-pointer"
           >
-            <img 
-              src={user?.avatarUrl || "https://i.pravatar.cc/150?u=fallback"} 
-              alt={user?.displayName || "Admin User"} 
-              className="w-10 h-10 rounded-full bg-slate-700 object-cover" 
+            <img
+              src={user?.avatarUrl || "https://i.pravatar.cc/150?u=fallback"}
+              alt={user?.displayName || "Admin User"}
+              className="w-10 h-10 rounded-full bg-slate-700 object-cover"
             />
             <div className="flex-1 overflow-hidden">
               <p className="text-sm font-bold text-sidebar-foreground truncate">{user?.displayName || user?.email || 'Admin User'}</p>

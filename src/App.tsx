@@ -24,6 +24,7 @@ import { CareerPathsPage } from '@/modules/admin/pages/CareerPathsPage';
 import { AdminResourcesPage } from '@/modules/admin/pages/AdminResourcesPage';
 import { AdminSettingsPage } from '@/modules/admin/pages/AdminSettingsPage';
 import { AdminSupportPage } from '@/modules/admin/pages/AdminSupportPage';
+import { AdminDashboardPage } from '@/modules/admin/pages/AdminDashboardPage';
 
 function App() {
   return (
@@ -50,6 +51,8 @@ function App() {
       
       {/* Admin routes */}
       <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
+        <Route path="dashboard" element={<AdminDashboardPage />} />
+        <Route path="analytics" element={<AdminUsersPage />} />
         <Route path="career-paths" element={<CareerPathsPage />} />
         <Route path="career-paths/new" element={<CareerPathBuilderPage />} />
         <Route path="career-paths/:id" element={<CareerPathBuilderPage />} />
@@ -59,7 +62,7 @@ function App() {
         <Route path="users" element={<AdminUsersPage />} />
         <Route path="settings" element={<AdminSettingsPage />} />
         <Route path="support" element={<AdminSupportPage />} />
-        <Route index element={<Navigate to="career-paths" replace />} />
+        <Route index element={<Navigate to="dashboard" replace />} />
       </Route>
 
       <Route path="/logout" element={<LogoutPage />} />
