@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { Link } from 'react-router-dom';
 import { Save, Shield, Cpu, Mail } from 'lucide-react';
 
 export const AdminSettingsPage = () => {
@@ -23,7 +24,7 @@ export const AdminSettingsPage = () => {
     <div className="p-8 max-w-4xl mx-auto space-y-8 text-foreground">
       <div>
         <p className="text-sm font-bold text-muted-foreground uppercase tracking-wide mb-1">
-          Admin &gt; Settings
+          <Link to="/admin" className="hover:text-primary transition-colors">Admin</Link> &gt; <span className="text-foreground">Settings</span>
         </p>
         <h1 className="text-3xl font-extrabold text-foreground uppercase">System Configurations</h1>
         <p className="text-sm text-muted-foreground mt-1">Configure global portal parameters, security controls, and third-party API integrations.</p>

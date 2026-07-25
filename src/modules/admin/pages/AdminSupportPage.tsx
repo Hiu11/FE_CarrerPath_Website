@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { Link } from 'react-router-dom';
 import { HelpCircle, Send, MessageSquare } from 'lucide-react';
 
 export const AdminSupportPage = () => {
@@ -43,7 +44,7 @@ export const AdminSupportPage = () => {
     <div className="p-8 max-w-4xl mx-auto space-y-8 text-foreground">
       <div>
         <p className="text-sm font-bold text-muted-foreground uppercase tracking-wide mb-1">
-          Admin &gt; Support
+          <Link to="/admin" className="hover:text-primary transition-colors">Admin</Link> &gt; <span className="text-foreground">Support</span>
         </p>
         <h1 className="text-3xl font-extrabold text-foreground uppercase">Support & Developers Hub</h1>
         <p className="text-sm text-muted-foreground mt-1">Get developer assistance, file tickets for system bugs, or search portal management FAQs.</p>

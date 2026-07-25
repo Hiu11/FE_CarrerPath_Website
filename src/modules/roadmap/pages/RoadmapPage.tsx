@@ -40,8 +40,8 @@ export const RoadmapPage = () => {
   const filteredCareerPaths = careerPaths.filter((career) => {
     const query = searchQuery.trim().toLowerCase();
     const matchesSearch = !query
-      || career.careerTitle.toLowerCase().includes(query)
-      || career.description.toLowerCase().includes(query)
+      || career.careerTitle?.toLowerCase().includes(query)
+      || career.description?.toLowerCase().includes(query)
       || (career.skills || []).some((skill) => skill.toLowerCase().includes(query))
       || career.outcome?.toLowerCase().includes(query);
     const matchesCategory = categoryFilter === 'All' || career.category === categoryFilter;

@@ -24,7 +24,12 @@ import { ResourceCard } from '../components/ResourceCard';
 import type { CareerPath } from '../types';
 import type { CurrentUser } from '@/modules/auth/types/auth.types';
 
-const guestPreviewCompletedNodes = ['fe-internet', 'fe-html-css', 'be-runtime', 'do-linux'];
+const guestPreviewCompletedNodes = [
+  'frontend-1-internet-web-protocols',
+  'frontend-2-html-css-layout-architecture',
+  'backend-1-javascript-runtime-node-js',
+  'devops-1-linux-systems-shell-scripting'
+];
 
 const getStoredCompletedNodes = (careerId: string, isSignedIn: boolean) => {
   if (!isSignedIn) {

@@ -3,6 +3,7 @@ import { adminApi } from '../api/admin.api';
 import { DataTable } from '../components/DataTable';
 import { ConfirmDeleteModal } from '../components/ConfirmDeleteModal';
 import { toast } from 'sonner';
+import { Link } from 'react-router-dom';
 
 interface User {
   _id: string;
@@ -113,7 +114,7 @@ export const AdminUsersPage = () => {
     <div className="p-8 max-w-7xl mx-auto space-y-8 text-slate-200">
       <div>
         <p className="text-sm font-bold text-slate-400 uppercase tracking-wide mb-1">
-          Admin &gt; Users
+          <Link to="/admin" className="hover:text-primary transition-colors">Admin</Link> &gt; <span className="text-slate-200">Users</span>
         </p>
         <h1 className="text-3xl font-extrabold text-white uppercase">Users Management</h1>
         <p className="text-sm text-slate-400 mt-1">Manage user accounts and roles.</p>

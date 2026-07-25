@@ -6,7 +6,7 @@ import {
   Search, Plus, Trash2, ChevronDown, ChevronUp, X, Info, 
   AlertTriangle, CheckCircle2, Eye, BookOpen, Send, Archive, Bookmark
 } from 'lucide-react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { adminApi } from '../api/admin.api';
 import { toast } from 'sonner';
 
@@ -391,7 +391,7 @@ export const CareerPathBuilderPage = () => {
         <div>
           <div className="flex items-center gap-3 mb-1">
             <p className="text-sm font-bold text-muted-foreground uppercase tracking-wide">
-              Admin &gt; Career Paths &gt; {isEditMode ? 'Edit Path' : 'New Path'}
+              <Link to="/admin" className="hover:text-primary transition-colors">Admin</Link> &gt; <Link to="/admin/career-paths" className="hover:text-primary transition-colors">Career Paths</Link> &gt; <span className="text-foreground">{isEditMode ? 'Edit Path' : 'New Path'}</span>
             </p>
             {/* Status Badge */}
             <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded uppercase border ${

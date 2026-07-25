@@ -1,8 +1,8 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import type { CareerPath } from '@/modules/roadmap/types';
-import careerPathsData from '@/modules/roadmap/data/careers.json';
-
-const careerPaths = careerPathsData as CareerPath[];
+import { roadmapApi } from '@/modules/roadmap/api/roadmap.api';
+import { Loader2 } from 'lucide-react';
 
 const categoryIconPaths: Record<string, string[]> = {
   Engineering: [
@@ -59,6 +59,17 @@ const CareerIcon = ({ category }: { category?: string }) => {
 };
 
 export const HomePage = () => {
+  const [careerPaths, setCareerPaths] = useState<CareerPath[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    roadmapApi.getPublicRoadmaps()
+      .then((response) => setCareerPaths(response.data || []))
+      .catch(() => setCareerPaths([]))
+      .finally(() => setIsLoading(false));
+  }, []);
+
   return (
     <div className="space-y-16 py-4">
       {/* Hero Section */}
@@ -89,57 +100,72 @@ export const HomePage = () => {
             Popular Topics
           </h2>
           <span className="text-xs text-muted-foreground font-mono uppercase tracking-wider">
-            10 Career Paths Available
+            {isLoading ? 'Loading...' : `${careerPaths.length} Career Paths Available`}
           </span>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {careerPaths.map((career) => (
-            <Link
-              key={career.id}
-              to={`/roadmap/${career.id}`}
-              className="group block relative border-2 border-foreground bg-card text-card-foreground p-6 rounded-[4px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,0.15)] transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[6px_6px_0px_0px_rgba(250,250,250,0.3)]"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <div className="p-2 border-2 border-foreground rounded-[2px] bg-background">
-                  <CareerIcon category={career.category} />
-                </div>
-                <div className="flex flex-col items-end gap-1">
-                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 border border-foreground rounded-[2px] bg-muted uppercase tracking-wider">
-                    {career.category ?? 'Path'}
-                  </span>
-                  {career.difficulty && (
-                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 border border-foreground rounded-[2px] bg-background uppercase tracking-wider">
-                      {career.difficulty}
-                    </span>
-                  )}
-                </div>
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center py-20 border-2 border-dashed border-foreground bg-card rounded-[4px]">
+            <Loader2 className="size-8 animate-spin text-primary" />
+            <p className="mt-3 font-mono text-xs uppercase font-bold">Loading career paths...</p>
+          </div>
+        ) : (
+          <>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {careerPaths.map((career) => (
+                <Link
+                  key={career.id}
+                  to={`/roadmap/${career.id}`}
+                  className="group block relative border-2 border-foreground bg-card text-card-foreground p-6 rounded-[4px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(250,250,250,0.15)] transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[6px_6px_0px_0px_rgba(250,250,250,0.3)]"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="p-2 border-2 border-foreground rounded-[2px] bg-background">
+                      <CareerIcon category={career.category} />
+                    </div>
+                    <div className="flex flex-col items-end gap-1">
+                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 border border-foreground rounded-[2px] bg-muted uppercase tracking-wider">
+                        {career.category ?? 'Path'}
+                      </span>
+                      {career.difficulty && (
+                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 border border-foreground rounded-[2px] bg-background uppercase tracking-wider">
+                          {career.difficulty}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold tracking-tight mb-2 group-hover:text-primary transition-colors">
+                    {career.careerTitle}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-sans leading-relaxed">
+                    {career.description}
+                  </p>
+                  <div className="mt-4 grid grid-cols-2 gap-2 border-t border-dashed border-foreground/30 pt-3 font-mono text-[10px] uppercase">
+                    <div>
+                      <span className="block text-muted-foreground">Duration</span>
+                      <strong>{career.duration ?? '10-12 weeks'}</strong>
+                    </div>
+                    <div>
+                      <span className="block text-muted-foreground">Outcome</span>
+                      <strong>{career.outcome ?? 'Portfolio proof'}</strong>
+                    </div>
+                  </div>
+                  <div className="mt-4 flex items-center gap-1.5 text-xs font-mono font-bold text-primary group-hover:underline">
+                    View Roadmap
+                    <svg className="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            {careerPaths.length === 0 && (
+              <div className="border-2 border-dashed border-foreground bg-card p-8 text-center rounded-[4px]">
+                <p className="font-mono text-sm font-bold uppercase">No published career paths available</p>
+                <p className="mt-2 text-sm text-muted-foreground">Please check back later or log in as admin to publish paths.</p>
               </div>
-              <h3 className="text-lg font-bold tracking-tight mb-2 group-hover:text-primary transition-colors">
-                {career.careerTitle}
-              </h3>
-              <p className="text-sm text-muted-foreground font-sans leading-relaxed">
-                {career.description}
-              </p>
-              <div className="mt-4 grid grid-cols-2 gap-2 border-t border-dashed border-foreground/30 pt-3 font-mono text-[10px] uppercase">
-                <div>
-                  <span className="block text-muted-foreground">Duration</span>
-                  <strong>{career.duration ?? `${career.roadmapSteps.length} stages`}</strong>
-                </div>
-                <div>
-                  <span className="block text-muted-foreground">Outcome</span>
-                  <strong>{career.outcome ?? 'Portfolio proof'}</strong>
-                </div>
-              </div>
-              <div className="mt-4 flex items-center gap-1.5 text-xs font-mono font-bold text-primary group-hover:underline">
-                View Roadmap
-                <svg className="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </div>
-            </Link>
-          ))}
-        </div>
+            )}
+          </>
+        )}
       </section>
     </div>
   );

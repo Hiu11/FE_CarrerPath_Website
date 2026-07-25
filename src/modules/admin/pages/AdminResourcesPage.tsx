@@ -4,6 +4,7 @@ import { DataTable } from '../components/DataTable';
 import { ConfirmDeleteModal } from '../components/ConfirmDeleteModal';
 import { toast } from 'sonner';
 import { X, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface Skill {
   _id: string;
@@ -193,7 +194,7 @@ export const AdminResourcesPage = () => {
     <div className="p-8 max-w-7xl mx-auto space-y-8 text-foreground">
       <div>
         <p className="text-sm font-bold text-muted-foreground uppercase tracking-wide mb-1">
-          Admin &gt; Resources
+          <Link to="/admin" className="hover:text-primary transition-colors">Admin</Link> &gt; <span className="text-foreground">Resources</span>
         </p>
         <h1 className="text-3xl font-extrabold text-foreground uppercase">Learning Resources</h1>
         <p className="text-sm text-muted-foreground mt-1">Manage external document links, internal courses, and videos mapped to skills.</p>

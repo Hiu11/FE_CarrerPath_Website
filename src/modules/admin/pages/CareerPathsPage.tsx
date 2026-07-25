@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { adminApi } from '../api/admin.api';
 import { ConfirmDeleteModal } from '../components/ConfirmDeleteModal';
 import { toast } from 'sonner';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { 
   Plus, 
   Search, 
@@ -24,6 +24,7 @@ interface CareerPath {
   title?: string;
   department?: string;
   description?: string;
+  status?: 'draft' | 'published' | 'archived';
   levels?: Array<{
     name: string;
     requiredSkills?: Array<{ _id: string; name: string } | string>;
@@ -41,6 +42,12 @@ const DEPARTMENT_BADGES: Record<string, string> = {
   Product: 'bg-orange-500/10 text-orange-500 border-orange-500/30',
   AI: 'bg-cyan-500/10 text-cyan-500 border-cyan-500/30',
   Legacy: 'bg-muted text-muted-foreground border-border'
+};
+
+const STATUS_BADGES: Record<string, string> = {
+  published: 'bg-emerald-500/20 text-emerald-500 border-emerald-500/30',
+  draft: 'bg-amber-500/20 text-amber-500 border-amber-500/30',
+  archived: 'bg-rose-500/20 text-rose-500 border-rose-500/30'
 };
 
 export const CareerPathsPage = () => {
@@ -143,7 +150,7 @@ export const CareerPathsPage = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-1">
-            Admin &gt; Career Paths
+            <Link to="/admin" className="hover:text-primary transition-colors">Admin</Link> &gt; <span className="text-foreground">Career Paths</span>
           </p>
           <h1 className="text-3xl font-black uppercase tracking-tight text-foreground flex items-center gap-2">
             <Compass className="w-8 h-8 text-primary" /> Career Paths Management
@@ -296,6 +303,8 @@ export const CareerPathsPage = () => {
             const title = path.pathName || path.title || 'Untitled Path';
             const dept = path.department || 'Legacy';
             const badgeClass = DEPARTMENT_BADGES[dept] || DEPARTMENT_BADGES.Legacy;
+            const status = path.status || 'draft';
+            const statusBadgeClass = STATUS_BADGES[status] || STATUS_BADGES.draft;
             const levelCount = path.levels?.length || 0;
             const careerSlug = path.careerId || title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
@@ -307,9 +316,14 @@ export const CareerPathsPage = () => {
                 <div className="p-6 space-y-4">
                   <div className="flex justify-between items-start gap-2">
                     <div>
-                      <span className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold border uppercase tracking-wider ${badgeClass}`}>
-                        {dept}
-                      </span>
+                      <div className="flex flex-wrap gap-2">
+                        <span className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold border uppercase tracking-wider ${badgeClass}`}>
+                          {dept}
+                        </span>
+                        <span className={`px-2.5 py-1 rounded-md text-[11px] font-extrabold border uppercase tracking-wider ${statusBadgeClass}`}>
+                          {status}
+                        </span>
+                      </div>
                       <h3 className="text-xl font-bold text-foreground mt-3 group-hover:text-primary transition-colors">
                         {title}
                       </h3>
@@ -364,6 +378,7 @@ export const CareerPathsPage = () => {
                   <th className="px-6 py-4">Path Name</th>
                   <th className="px-6 py-4">Department</th>
                   <th className="px-6 py-4">Levels</th>
+                  <th className="px-6 py-4">Status</th>
                   <th className="px-6 py-4">Description</th>
                   <th className="px-6 py-4 text-right">Actions</th>
                 </tr>
@@ -373,6 +388,8 @@ export const CareerPathsPage = () => {
                   const title = path.pathName || path.title || 'Untitled Path';
                   const dept = path.department || 'Legacy';
                   const badgeClass = DEPARTMENT_BADGES[dept] || DEPARTMENT_BADGES.Legacy;
+                  const status = path.status || 'draft';
+                  const statusBadgeClass = STATUS_BADGES[status] || STATUS_BADGES.draft;
                   const levelCount = path.levels?.length || 0;
                   const careerSlug = path.careerId || title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
@@ -397,6 +414,11 @@ export const CareerPathsPage = () => {
                       </td>
                       <td className="px-6 py-4 font-semibold text-foreground">
                         {levelCount} Levels
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className={`px-2.5 py-1 rounded-md text-xs font-extrabold border uppercase ${statusBadgeClass}`}>
+                          {status}
+                        </span>
                       </td>
                       <td className="px-6 py-4 truncate max-w-xs text-muted-foreground" title={path.description}>
                         {path.description}

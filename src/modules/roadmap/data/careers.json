@@ -8,13 +8,26 @@
     "duration": "10-12 weeks",
     "outcome": "Responsive React portfolio",
     "portfolioOutcome": "A responsive React app with routing, API integration, and polished UI states.",
-    "skills": ["HTML", "CSS", "JavaScript", "Tailwind CSS", "TypeScript", "Vite", "React", "Zustand"],
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Tailwind CSS",
+      "TypeScript",
+      "Vite",
+      "React",
+      "Zustand"
+    ],
     "roadmapSteps": [
       {
-        "id": "fe-internet",
+        "id": "frontend-1-internet-web-protocols",
         "title": "1. Internet & Web Protocols",
         "description": "Understand the fundamental architecture of the web: DNS servers, domain hosting, client-server models, and secure HTTP request lifecycles.",
-        "subtopics": ["DNS & Name Servers", "HTTP/HTTPS Requests & Response Codes", "Domain Registration & Hosting Models"],
+        "subtopics": [
+          "DNS & Name Servers",
+          "HTTP/HTTPS Requests & Response Codes",
+          "Domain Registration & Hosting Models"
+        ],
         "externalResources": [
           {
             "title": "How the Web Works",
@@ -24,10 +37,14 @@
         ]
       },
       {
-        "id": "fe-html-css",
+        "id": "frontend-2-html-css-layout-architecture",
         "title": "2. HTML & CSS Layout Architecture",
         "description": "Construct pages using semantic tags and style them using modern layout engines like Grid and Flexbox for responsive designs.",
-        "subtopics": ["Semantic markup systems", "CSS Flexbox alignment model", "CSS Grid template specifications"],
+        "subtopics": [
+          "Semantic markup systems",
+          "CSS Flexbox alignment model",
+          "CSS Grid template specifications"
+        ],
         "externalResources": [
           {
             "title": "CSS Grid Guide",
@@ -37,10 +54,14 @@
         ]
       },
       {
-        "id": "fe-javascript",
+        "id": "frontend-3-asynchronous-javascript-dom",
         "title": "3. Asynchronous JavaScript & DOM",
         "description": "Learn modern ES6+ runtime mechanics, asynchronous flows via Promises and async-await, and DOM event bindings.",
-        "subtopics": ["ESNext modules and lexical scoping", "Event Loop mechanics", "Promises, microtasks, and async actions"],
+        "subtopics": [
+          "ESNext modules and lexical scoping",
+          "Event Loop mechanics",
+          "Promises, microtasks, and async actions"
+        ],
         "externalResources": [
           {
             "title": "Modern JS Tutorial",
@@ -50,10 +71,14 @@
         ]
       },
       {
-        "id": "fe-css-frameworks",
+        "id": "frontend-4-css-frameworks-tailwind",
         "title": "4. CSS Frameworks & Tailwind",
         "description": "Master modern responsive layout styles using Tailwind CSS utility classes and design system custom tokens.",
-        "subtopics": ["Tailwind CSS core styles", "Utility-first design concept", "Responsive grid configurations"],
+        "subtopics": [
+          "Tailwind CSS core styles",
+          "Utility-first design concept",
+          "Responsive grid configurations"
+        ],
         "externalResources": [
           {
             "title": "Tailwind CSS Reference Docs",
@@ -63,10 +88,14 @@
         ]
       },
       {
-        "id": "fe-typescript",
+        "id": "frontend-5-typescript-structural-typing",
         "title": "5. TypeScript & Structural Typing",
         "description": "Bring compile-time type safety to your JavaScript projects by declaring type interfaces, unions, and generics.",
-        "subtopics": ["Type interfaces vs Types alias", "Generics and custom types", "Configuring tsconfig files"],
+        "subtopics": [
+          "Type interfaces vs Types alias",
+          "Generics and custom types",
+          "Configuring tsconfig files"
+        ],
         "externalResources": [
           {
             "title": "TypeScript Handbook",
@@ -76,10 +105,14 @@
         ]
       },
       {
-        "id": "fe-build-tools",
+        "id": "frontend-6-build-tools-bundlers",
         "title": "6. Build Tools & Bundlers",
         "description": "Compile, bundle, and hot-reload front-end applications efficiently using modern build bundlers.",
-        "subtopics": ["Vite configuration and plugins", "npm/pnpm package dependency maps", "Hot Module Replacement mechanics"],
+        "subtopics": [
+          "Vite configuration and plugins",
+          "npm/pnpm package dependency maps",
+          "Hot Module Replacement mechanics"
+        ],
         "externalResources": [
           {
             "title": "Vite Official Guide",
@@ -89,10 +122,14 @@
         ]
       },
       {
-        "id": "fe-react",
+        "id": "frontend-7-react-framework-hook-models",
         "title": "7. React Framework & Hook Models",
         "description": "Implement complex modular user interfaces using component-driven declarative design, rendering cycles, and state variables.",
-        "subtopics": ["Fiber reconciler cycle", "Hook flows (useState, useEffect, useMemo)", "Local and state management contexts"],
+        "subtopics": [
+          "Fiber reconciler cycle",
+          "Hook flows (useState, useEffect, useMemo)",
+          "Local and state management contexts"
+        ],
         "externalResources": [
           {
             "title": "React Developer Documentation",
@@ -102,10 +139,14 @@
         ]
       },
       {
-        "id": "fe-state-management",
+        "id": "frontend-8-state-management-clients",
         "title": "8. State Management & Clients",
         "description": "Manage shared application state globally and sync it using lightweight modular stores and custom clients.",
-        "subtopics": ["Zustand state store design", "Axios http interceptors configuration", "React Context API constraints"],
+        "subtopics": [
+          "Zustand state store design",
+          "Axios http interceptors configuration",
+          "React Context API constraints"
+        ],
         "externalResources": [
           {
             "title": "Zustand Documentation",
@@ -125,13 +166,26 @@
     "duration": "12-14 weeks",
     "outcome": "Secure production API",
     "portfolioOutcome": "A documented REST API with authentication, database models, tests, and deployment notes.",
-    "skills": ["Node.js", "Express", "PostgreSQL", "MongoDB", "JWT Security", "Redis", "Jest", "Docker"],
+    "skills": [
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "MongoDB",
+      "JWT Security",
+      "Redis",
+      "Jest",
+      "Docker"
+    ],
     "roadmapSteps": [
       {
-        "id": "be-runtime",
+        "id": "backend-1-javascript-runtime-node-js",
         "title": "1. JavaScript Runtime (Node.js)",
         "description": "Understand writing server-side JavaScript using the Node.js runtime environment, filesystem utilities, and package dependencies.",
-        "subtopics": ["Event-driven asynchronous I/O", "Node Package Manager syntax", "Environment configurations"],
+        "subtopics": [
+          "Event-driven asynchronous I/O",
+          "Node Package Manager syntax",
+          "Environment configurations"
+        ],
         "externalResources": [
           {
             "title": "Node.js Developer Guide",
@@ -141,10 +195,14 @@
         ]
       },
       {
-        "id": "be-apis",
+        "id": "backend-2-rest-api-design-routing",
         "title": "2. REST API Design & Routing",
         "description": "Build endpoints using correct HTTP methods, payload formats, status codes, query strings, and request parsers.",
-        "subtopics": ["REST architectural principles", "Express routing and middleware configuration", "JSON serialization"],
+        "subtopics": [
+          "REST architectural principles",
+          "Express routing and middleware configuration",
+          "JSON serialization"
+        ],
         "externalResources": [
           {
             "title": "HTTP Status Response Codes Reference",
@@ -154,10 +212,14 @@
         ]
       },
       {
-        "id": "be-databases",
+        "id": "backend-3-relational-databases-postgresql",
         "title": "3. Relational Databases (PostgreSQL)",
         "description": "Design database tables, indexes, constraints, write structured queries, and handle migrations.",
-        "subtopics": ["Database normalization rules", "SQL query join optimization", "ACID transactions specifications"],
+        "subtopics": [
+          "Database normalization rules",
+          "SQL query join optimization",
+          "ACID transactions specifications"
+        ],
         "externalResources": [
           {
             "title": "PostgreSQL Manuals",
@@ -167,10 +229,14 @@
         ]
       },
       {
-        "id": "be-nosql",
+        "id": "backend-4-nosql-databases-mongodb",
         "title": "4. NoSQL Databases (MongoDB)",
         "description": "Structure unstructured datasets using document-based schemas and index mappings in Mongoose.",
-        "subtopics": ["Document vs Relational designs", "Mongoose schema validations", "Aggregate query structures"],
+        "subtopics": [
+          "Document vs Relational designs",
+          "Mongoose schema validations",
+          "Aggregate query structures"
+        ],
         "externalResources": [
           {
             "title": "Mongoose Schema Reference Guide",
@@ -180,10 +246,14 @@
         ]
       },
       {
-        "id": "be-security",
+        "id": "backend-5-api-authentication-token-security",
         "title": "5. API Authentication & Token Security",
         "description": "Secure backend resources using JSON Web Tokens (JWT), session cookies, secure storage, and request rate-limiting.",
-        "subtopics": ["JWT signature verification", "CORS rules and cross-origin controls", "Hash mechanisms for passwords"],
+        "subtopics": [
+          "JWT signature verification",
+          "CORS rules and cross-origin controls",
+          "Hash mechanisms for passwords"
+        ],
         "externalResources": [
           {
             "title": "JWT Introduction",
@@ -193,10 +263,14 @@
         ]
       },
       {
-        "id": "be-caching",
+        "id": "backend-6-caching-performance",
         "title": "6. Caching & Performance",
         "description": "Optimize resource intensive databases queries and decrease response latency using Redis key-value cache layer.",
-        "subtopics": ["Redis data structures", "Cache invalidation patterns", "In-memory caching architectures"],
+        "subtopics": [
+          "Redis data structures",
+          "Cache invalidation patterns",
+          "In-memory caching architectures"
+        ],
         "externalResources": [
           {
             "title": "Redis Developers Hub",
@@ -206,10 +280,14 @@
         ]
       },
       {
-        "id": "be-testing-docs",
+        "id": "backend-7-testing-api-documentation",
         "title": "7. Testing & API Documentation",
         "description": "Write automated unit and integration tests and expose interactive API schema definitions using Swagger.",
-        "subtopics": ["Jest unit testing syntax", "Supertest express endpoint mock assertions", "Swagger Open API templates"],
+        "subtopics": [
+          "Jest unit testing syntax",
+          "Supertest express endpoint mock assertions",
+          "Swagger Open API templates"
+        ],
         "externalResources": [
           {
             "title": "Jest Documentation",
@@ -219,10 +297,14 @@
         ]
       },
       {
-        "id": "be-deployment",
+        "id": "backend-8-process-management-deployment",
         "title": "8. Process Management & Deployment",
         "description": "Keep server runtimes running continuously using process supervisors and deploy isolated Docker containers.",
-        "subtopics": ["PM2 daemon thread process management", "Docker backend container configuration", "Logging rotation patterns"],
+        "subtopics": [
+          "PM2 daemon thread process management",
+          "Docker backend container configuration",
+          "Logging rotation patterns"
+        ],
         "externalResources": [
           {
             "title": "PM2 Process Manager Quick Start",
@@ -242,13 +324,26 @@
     "duration": "14-16 weeks",
     "outcome": "Cloud deployment pipeline",
     "portfolioOutcome": "A containerized app with CI/CD, infrastructure notes, monitoring, and deployment runbook.",
-    "skills": ["Linux", "Nginx", "Docker", "GitHub Actions", "Kubernetes", "Terraform", "AWS", "Prometheus"],
+    "skills": [
+      "Linux",
+      "Nginx",
+      "Docker",
+      "GitHub Actions",
+      "Kubernetes",
+      "Terraform",
+      "AWS",
+      "Prometheus"
+    ],
     "roadmapSteps": [
       {
-        "id": "do-linux",
+        "id": "devops-1-linux-systems-shell-scripting",
         "title": "1. Linux Systems & Shell Scripting",
         "description": "Master Unix directory architectures, process controls, user permissions, network diagnostics, and shell tools.",
-        "subtopics": ["POSIX standard commands", "Bash scripts variables", "SSH and keys exchange methods"],
+        "subtopics": [
+          "POSIX standard commands",
+          "Bash scripts variables",
+          "SSH and keys exchange methods"
+        ],
         "externalResources": [
           {
             "title": "GNU Bash Manual",
@@ -258,10 +353,14 @@
         ]
       },
       {
-        "id": "do-web-servers",
+        "id": "devops-2-web-servers-reverse-proxies",
         "title": "2. Web Servers & Reverse Proxies",
         "description": "Route client requests to internal networks and handle TLS termination setups on web reverse proxy systems.",
-        "subtopics": ["Nginx reverse proxy configurations", "SSL certbot registration setups", "Rate limit rules definitions"],
+        "subtopics": [
+          "Nginx reverse proxy configurations",
+          "SSL certbot registration setups",
+          "Rate limit rules definitions"
+        ],
         "externalResources": [
           {
             "title": "Nginx Beginner Guide",
@@ -271,10 +370,14 @@
         ]
       },
       {
-        "id": "do-containers",
+        "id": "devops-3-containerization-docker",
         "title": "3. Containerization (Docker)",
         "description": "Isolate services into lightweight containers. Write custom configurations to compile performant containers.",
-        "subtopics": ["Layered filesystem builds", "Multi-stage builds optimizations", "Network bridges specifications"],
+        "subtopics": [
+          "Layered filesystem builds",
+          "Multi-stage builds optimizations",
+          "Network bridges specifications"
+        ],
         "externalResources": [
           {
             "title": "Docker Guide and Reference Docs",
@@ -284,10 +387,14 @@
         ]
       },
       {
-        "id": "do-pipelines",
+        "id": "devops-4-continuous-integration-pipelines",
         "title": "4. Continuous Integration & Pipelines",
         "description": "Build pipelines that test, build, lint, and deploy code changes dynamically to cluster instances.",
-        "subtopics": ["Pipeline triggers configuration", "Cache build dependencies strategies", "Deploy tokens storage"],
+        "subtopics": [
+          "Pipeline triggers configuration",
+          "Cache build dependencies strategies",
+          "Deploy tokens storage"
+        ],
         "externalResources": [
           {
             "title": "GitHub Actions Documentation",
@@ -297,10 +404,14 @@
         ]
       },
       {
-        "id": "do-k8s",
+        "id": "devops-5-container-orchestration-kubernetes",
         "title": "5. Container Orchestration (Kubernetes)",
         "description": "Manage clusters of containers across distributed networks. Automate scalability and fault tolerance.",
-        "subtopics": ["Deployments, pods, and services mapping", "ConfigMaps and Secrets mounting", "Ingress controller systems"],
+        "subtopics": [
+          "Deployments, pods, and services mapping",
+          "ConfigMaps and Secrets mounting",
+          "Ingress controller systems"
+        ],
         "externalResources": [
           {
             "title": "Kubernetes Overview and API Docs",
@@ -310,10 +421,14 @@
         ]
       },
       {
-        "id": "do-iac",
+        "id": "devops-6-infrastructure-as-code-terraform",
         "title": "6. Infrastructure as Code (Terraform)",
         "description": "Provision virtual resources in a descriptive syntax format, enabling repeatable server configurations.",
-        "subtopics": ["Terraform providers parameters", "State locking mechanisms", "Resources modules nesting configurations"],
+        "subtopics": [
+          "Terraform providers parameters",
+          "State locking mechanisms",
+          "Resources modules nesting configurations"
+        ],
         "externalResources": [
           {
             "title": "Terraform Introduction Tutorial",
@@ -323,10 +438,14 @@
         ]
       },
       {
-        "id": "do-cloud",
+        "id": "devops-7-cloud-architecture-aws",
         "title": "7. Cloud Architecture (AWS)",
         "description": "Architect networks, compute nodes, firewalls, and cloud storage pools within Amazon Web Services.",
-        "subtopics": ["IAM security rules maps", "VPC routing tables and subnets", "EC2 and S3 storage instances"],
+        "subtopics": [
+          "IAM security rules maps",
+          "VPC routing tables and subnets",
+          "EC2 and S3 storage instances"
+        ],
         "externalResources": [
           {
             "title": "AWS Cloud Practitioner Basics",
@@ -336,10 +455,14 @@
         ]
       },
       {
-        "id": "do-monitoring",
+        "id": "devops-8-monitoring-logging-analytics",
         "title": "8. Monitoring & Logging Analytics",
         "description": "Track resource utilization rates and check error log indexes using Prometheus metric scraping servers.",
-        "subtopics": ["PromQL query syntax patterns", "Grafana dashboards telemetry integration", "Alertmanager routes settings"],
+        "subtopics": [
+          "PromQL query syntax patterns",
+          "Grafana dashboards telemetry integration",
+          "Alertmanager routes settings"
+        ],
         "externalResources": [
           {
             "title": "Prometheus Introduction Guide",
@@ -359,13 +482,26 @@
     "duration": "14-16 weeks",
     "outcome": "End-to-end SaaS project",
     "portfolioOutcome": "A deployed fullstack CRUD product with auth, dashboard, API, database, and responsive UI.",
-    "skills": ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Authentication", "REST APIs", "Deployment"],
+    "skills": [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Authentication",
+      "REST APIs",
+      "Deployment"
+    ],
     "roadmapSteps": [
       {
-        "id": "fs-product-foundation",
-        "title": "1. Product Scope & User Flows",
+        "id": "fullstack-product-scope-user-flows",
+        "title": "Product Scope & User Flows",
         "description": "Define product requirements, user roles, data entities, and the main workflows before coding.",
-        "subtopics": ["User stories", "Entity relationship mapping", "MVP feature scoping"],
+        "subtopics": [
+          "User stories",
+          "Entity relationship mapping",
+          "MVP feature scoping"
+        ],
         "externalResources": [
           {
             "title": "Writing Good User Stories",
@@ -375,10 +511,14 @@
         ]
       },
       {
-        "id": "fs-frontend-app",
-        "title": "2. React Application Architecture",
+        "id": "fullstack-react-application-architecture",
+        "title": "React Application Architecture",
         "description": "Create reusable pages, layouts, state containers, and form flows for a production-like frontend.",
-        "subtopics": ["Route structure", "Reusable components", "Form validation"],
+        "subtopics": [
+          "Route structure",
+          "Reusable components",
+          "Form validation"
+        ],
         "externalResources": [
           {
             "title": "React Learn",
@@ -388,10 +528,14 @@
         ]
       },
       {
-        "id": "fs-backend-api",
-        "title": "3. API & Database Layer",
+        "id": "fullstack-api-database-layer",
+        "title": "API & Database Layer",
         "description": "Design API endpoints, validation rules, database schemas, and error responses.",
-        "subtopics": ["REST endpoints", "Schema modeling", "Request validation"],
+        "subtopics": [
+          "REST endpoints",
+          "Schema modeling",
+          "Request validation"
+        ],
         "externalResources": [
           {
             "title": "Express Routing",
@@ -401,10 +545,14 @@
         ]
       },
       {
-        "id": "fs-auth-security",
-        "title": "4. Authentication & Protected Features",
+        "id": "fullstack-authentication-protected-features",
+        "title": "Authentication & Protected Features",
         "description": "Implement login, register, protected routes, token handling, and role-based permissions.",
-        "subtopics": ["JWT auth", "Protected routes", "Role checks"],
+        "subtopics": [
+          "JWT auth",
+          "Protected routes",
+          "Role checks"
+        ],
         "externalResources": [
           {
             "title": "JWT Introduction",
@@ -414,10 +562,14 @@
         ]
       },
       {
-        "id": "fs-deploy-demo",
-        "title": "5. Deployment & Demo Readiness",
+        "id": "fullstack-deployment-demo-readiness",
+        "title": "Deployment & Demo Readiness",
         "description": "Deploy the app, prepare demo accounts, seed data, and document the end-to-end flow.",
-        "subtopics": ["Environment variables", "Seed data", "Demo script"],
+        "subtopics": [
+          "Environment variables",
+          "Seed data",
+          "Demo script"
+        ],
         "externalResources": [
           {
             "title": "Vercel Deployment Documentation",
@@ -437,13 +589,25 @@
     "duration": "8-10 weeks",
     "outcome": "Business insight dashboard",
     "portfolioOutcome": "A dashboard case study with cleaned data, SQL queries, charts, and recommendations.",
-    "skills": ["Excel", "SQL", "Data Cleaning", "Statistics", "Power BI", "Tableau", "Data Storytelling"],
+    "skills": [
+      "Excel",
+      "SQL",
+      "Data Cleaning",
+      "Statistics",
+      "Power BI",
+      "Tableau",
+      "Data Storytelling"
+    ],
     "roadmapSteps": [
       {
-        "id": "da-spreadsheets",
-        "title": "1. Spreadsheet Analysis Foundations",
+        "id": "data-analyst-spreadsheet-analysis-foundations",
+        "title": "Spreadsheet Analysis Foundations",
         "description": "Clean, transform, summarize, and validate tabular data using spreadsheet workflows.",
-        "subtopics": ["Pivot tables", "Lookup formulas", "Data validation"],
+        "subtopics": [
+          "Pivot tables",
+          "Lookup formulas",
+          "Data validation"
+        ],
         "externalResources": [
           {
             "title": "Google Sheets Training",
@@ -453,10 +617,14 @@
         ]
       },
       {
-        "id": "da-sql",
-        "title": "2. SQL for Analytics",
+        "id": "data-analyst-sql-for-analytics",
+        "title": "SQL for Analytics",
         "description": "Query relational data using filters, joins, aggregations, and window functions.",
-        "subtopics": ["SELECT queries", "Joins and grouping", "Window functions"],
+        "subtopics": [
+          "SELECT queries",
+          "Joins and grouping",
+          "Window functions"
+        ],
         "externalResources": [
           {
             "title": "SQL Tutorial",
@@ -466,10 +634,14 @@
         ]
       },
       {
-        "id": "da-visualization",
-        "title": "3. Data Visualization Principles",
+        "id": "data-analyst-data-visualization-principles",
+        "title": "Data Visualization Principles",
         "description": "Choose clear chart types, design dashboards, and avoid misleading visual patterns.",
-        "subtopics": ["Chart selection", "Dashboard layout", "Data ink and clarity"],
+        "subtopics": [
+          "Chart selection",
+          "Dashboard layout",
+          "Data ink and clarity"
+        ],
         "externalResources": [
           {
             "title": "Data Visualization Catalogue",
@@ -479,10 +651,14 @@
         ]
       },
       {
-        "id": "da-business-insight",
-        "title": "4. Business Insight & Storytelling",
+        "id": "data-analyst-business-insight-storytelling",
+        "title": "Business Insight & Storytelling",
         "description": "Convert analysis into recommendations with context, tradeoffs, and measurable impact.",
-        "subtopics": ["Insight framing", "Executive summary", "Recommendation writing"],
+        "subtopics": [
+          "Insight framing",
+          "Executive summary",
+          "Recommendation writing"
+        ],
         "externalResources": [
           {
             "title": "Storytelling with Data Blog",
@@ -492,10 +668,14 @@
         ]
       },
       {
-        "id": "da-portfolio-case",
-        "title": "5. Portfolio Analytics Case Study",
+        "id": "data-analyst-portfolio-analytics-case-study",
+        "title": "Portfolio Analytics Case Study",
         "description": "Create a complete analytics case study with dataset, queries, dashboard, and final recommendations.",
-        "subtopics": ["Case study structure", "Dashboard publishing", "Insight presentation"],
+        "subtopics": [
+          "Case study structure",
+          "Dashboard publishing",
+          "Insight presentation"
+        ],
         "externalResources": [
           {
             "title": "Kaggle Datasets",
@@ -515,13 +695,24 @@
     "duration": "10-12 weeks",
     "outcome": "Clickable product prototype",
     "portfolioOutcome": "A UX case study with research notes, wireframes, high-fidelity screens, and prototype link.",
-    "skills": ["User Research", "Wireframing", "Figma", "Prototyping", "Design Systems", "Usability Testing"],
+    "skills": [
+      "User Research",
+      "Wireframing",
+      "Figma",
+      "Prototyping",
+      "Design Systems",
+      "Usability Testing"
+    ],
     "roadmapSteps": [
       {
-        "id": "ux-research",
-        "title": "1. User Research & Problem Discovery",
+        "id": "ui-ux-user-research-problem-discovery",
+        "title": "User Research & Problem Discovery",
         "description": "Understand user goals, pain points, contexts, and constraints before designing screens.",
-        "subtopics": ["Interview scripts", "Personas", "Problem statements"],
+        "subtopics": [
+          "Interview scripts",
+          "Personas",
+          "Problem statements"
+        ],
         "externalResources": [
           {
             "title": "UX Research Cheat Sheet",
@@ -531,10 +722,14 @@
         ]
       },
       {
-        "id": "ux-information-architecture",
-        "title": "2. Information Architecture & User Flows",
+        "id": "ui-ux-information-architecture-user-flows",
+        "title": "Information Architecture & User Flows",
         "description": "Map content, navigation, and task flows so users can complete goals efficiently.",
-        "subtopics": ["User journeys", "Navigation models", "Task flows"],
+        "subtopics": [
+          "User journeys",
+          "Navigation models",
+          "Task flows"
+        ],
         "externalResources": [
           {
             "title": "Information Architecture Basics",
@@ -544,10 +739,14 @@
         ]
       },
       {
-        "id": "ux-wireframes",
-        "title": "3. Wireframing & Interaction Design",
+        "id": "ui-ux-wireframing-interaction-design",
+        "title": "Wireframing & Interaction Design",
         "description": "Design low-fidelity screens that communicate layout, hierarchy, and interaction behavior.",
-        "subtopics": ["Layout hierarchy", "Interaction states", "Form flows"],
+        "subtopics": [
+          "Layout hierarchy",
+          "Interaction states",
+          "Form flows"
+        ],
         "externalResources": [
           {
             "title": "Wireframing Guide",
@@ -557,10 +756,14 @@
         ]
       },
       {
-        "id": "ux-design-system",
-        "title": "4. Visual UI & Design Systems",
+        "id": "ui-ux-visual-ui-design-systems",
+        "title": "Visual UI & Design Systems",
         "description": "Create reusable components, tokens, color systems, and accessible UI patterns.",
-        "subtopics": ["Component libraries", "Color and typography", "Accessibility basics"],
+        "subtopics": [
+          "Component libraries",
+          "Color and typography",
+          "Accessibility basics"
+        ],
         "externalResources": [
           {
             "title": "Material Design Foundations",
@@ -570,10 +773,14 @@
         ]
       },
       {
-        "id": "ux-case-study",
-        "title": "5. Prototype & UX Case Study",
+        "id": "ui-ux-prototype-ux-case-study",
+        "title": "Prototype & UX Case Study",
         "description": "Build a clickable prototype and document the design process as a portfolio-ready case study.",
-        "subtopics": ["Clickable prototypes", "Usability test plan", "Case study writing"],
+        "subtopics": [
+          "Clickable prototypes",
+          "Usability test plan",
+          "Case study writing"
+        ],
         "externalResources": [
           {
             "title": "UX Case Study Guide",
@@ -593,13 +800,25 @@
     "duration": "8-10 weeks",
     "outcome": "Automated QA test suite",
     "portfolioOutcome": "A QA portfolio with test plan, bug reports, automated tests, and quality summary.",
-    "skills": ["Test Cases", "Bug Reports", "Postman", "Playwright", "Jest", "Regression Testing", "QA Strategy"],
+    "skills": [
+      "Test Cases",
+      "Bug Reports",
+      "Postman",
+      "Playwright",
+      "Jest",
+      "Regression Testing",
+      "QA Strategy"
+    ],
     "roadmapSteps": [
       {
-        "id": "qa-testing-mindset",
-        "title": "1. Testing Mindset & QA Process",
+        "id": "qa-engineer-testing-mindset-qa-process",
+        "title": "Testing Mindset & QA Process",
         "description": "Learn how QA protects user outcomes through risk analysis, clear acceptance criteria, and test planning.",
-        "subtopics": ["Test planning", "Acceptance criteria", "Risk-based testing"],
+        "subtopics": [
+          "Test planning",
+          "Acceptance criteria",
+          "Risk-based testing"
+        ],
         "externalResources": [
           {
             "title": "Software Testing Basics",
@@ -609,10 +828,14 @@
         ]
       },
       {
-        "id": "qa-test-cases",
-        "title": "2. Test Case Design",
+        "id": "qa-engineer-test-case-design",
+        "title": "Test Case Design",
         "description": "Write clear manual test cases for happy paths, edge cases, validation rules, and negative flows.",
-        "subtopics": ["Boundary values", "Equivalence classes", "Negative testing"],
+        "subtopics": [
+          "Boundary values",
+          "Equivalence classes",
+          "Negative testing"
+        ],
         "externalResources": [
           {
             "title": "Test Case Design Techniques",
@@ -622,10 +845,14 @@
         ]
       },
       {
-        "id": "qa-api-testing",
-        "title": "3. API Testing with Postman",
+        "id": "qa-engineer-api-testing-with-postman",
+        "title": "API Testing with Postman",
         "description": "Validate backend endpoints, request payloads, auth flows, and response contracts.",
-        "subtopics": ["Collections", "Environment variables", "API assertions"],
+        "subtopics": [
+          "Collections",
+          "Environment variables",
+          "API assertions"
+        ],
         "externalResources": [
           {
             "title": "Postman Learning Center",
@@ -635,10 +862,14 @@
         ]
       },
       {
-        "id": "qa-automation",
-        "title": "4. UI Automation with Playwright",
+        "id": "qa-engineer-ui-automation-with-playwright",
+        "title": "UI Automation with Playwright",
         "description": "Automate browser checks for critical user flows and run regression tests reliably.",
-        "subtopics": ["Selectors", "Assertions", "CI test runs"],
+        "subtopics": [
+          "Selectors",
+          "Assertions",
+          "CI test runs"
+        ],
         "externalResources": [
           {
             "title": "Playwright Documentation",
@@ -648,10 +879,14 @@
         ]
       },
       {
-        "id": "qa-reporting",
-        "title": "5. Bug Reporting & Quality Metrics",
+        "id": "qa-engineer-bug-reporting-quality-metrics",
+        "title": "Bug Reporting & Quality Metrics",
         "description": "Write actionable bug reports and summarize quality risks for developers and stakeholders.",
-        "subtopics": ["Bug reproduction", "Severity and priority", "QA summary reports"],
+        "subtopics": [
+          "Bug reproduction",
+          "Severity and priority",
+          "QA summary reports"
+        ],
         "externalResources": [
           {
             "title": "How to Write a Bug Report",
@@ -671,13 +906,24 @@
     "duration": "10-12 weeks",
     "outcome": "Product strategy case study",
     "portfolioOutcome": "A product case study with discovery notes, roadmap, metrics, and launch plan.",
-    "skills": ["User Discovery", "Prioritization", "Roadmapping", "Metrics", "Stakeholder Communication", "Product Strategy"],
+    "skills": [
+      "User Discovery",
+      "Prioritization",
+      "Roadmapping",
+      "Metrics",
+      "Stakeholder Communication",
+      "Product Strategy"
+    ],
     "roadmapSteps": [
       {
-        "id": "pm-discovery",
-        "title": "1. Product Discovery",
+        "id": "product-manager-product-discovery",
+        "title": "Product Discovery",
         "description": "Identify valuable problems through user interviews, market signals, and product analytics.",
-        "subtopics": ["Problem framing", "User interviews", "Opportunity sizing"],
+        "subtopics": [
+          "Problem framing",
+          "User interviews",
+          "Opportunity sizing"
+        ],
         "externalResources": [
           {
             "title": "Continuous Discovery Habits",
@@ -687,10 +933,14 @@
         ]
       },
       {
-        "id": "pm-prioritization",
-        "title": "2. Prioritization Frameworks",
+        "id": "product-manager-prioritization-frameworks",
+        "title": "Prioritization Frameworks",
         "description": "Choose what to build by balancing impact, confidence, effort, risk, and strategy.",
-        "subtopics": ["RICE scoring", "MoSCoW", "Tradeoff decisions"],
+        "subtopics": [
+          "RICE scoring",
+          "MoSCoW",
+          "Tradeoff decisions"
+        ],
         "externalResources": [
           {
             "title": "RICE Prioritization",
@@ -700,10 +950,14 @@
         ]
       },
       {
-        "id": "pm-roadmap",
-        "title": "3. Roadmap Planning",
+        "id": "product-manager-roadmap-planning",
+        "title": "Roadmap Planning",
         "description": "Translate product strategy into roadmap themes, releases, and measurable milestones.",
-        "subtopics": ["Outcome roadmaps", "Release planning", "Dependencies"],
+        "subtopics": [
+          "Outcome roadmaps",
+          "Release planning",
+          "Dependencies"
+        ],
         "externalResources": [
           {
             "title": "Product Roadmap Guide",
@@ -713,10 +967,14 @@
         ]
       },
       {
-        "id": "pm-metrics",
-        "title": "4. Product Metrics & Experiments",
+        "id": "product-manager-product-metrics-experiments",
+        "title": "Product Metrics & Experiments",
         "description": "Define success metrics, read product funnels, and validate decisions with experiments.",
-        "subtopics": ["North star metric", "Funnels", "Experiment design"],
+        "subtopics": [
+          "North star metric",
+          "Funnels",
+          "Experiment design"
+        ],
         "externalResources": [
           {
             "title": "AARRR Metrics Framework",
@@ -726,10 +984,14 @@
         ]
       },
       {
-        "id": "pm-stakeholders",
-        "title": "5. Stakeholder Communication",
+        "id": "product-manager-stakeholder-communication",
+        "title": "Stakeholder Communication",
         "description": "Write product briefs, align teams, handle tradeoffs, and communicate launch readiness.",
-        "subtopics": ["PRDs", "Launch notes", "Stakeholder updates"],
+        "subtopics": [
+          "PRDs",
+          "Launch notes",
+          "Stakeholder updates"
+        ],
         "externalResources": [
           {
             "title": "Product Requirements Document Guide",
@@ -749,13 +1011,24 @@
     "duration": "12-14 weeks",
     "outcome": "Published mobile app prototype",
     "portfolioOutcome": "A mobile app prototype with authentication, API data, local persistence, and release notes.",
-    "skills": ["React Native", "Mobile UI", "Navigation", "API Integration", "Async Storage", "App Release"],
+    "skills": [
+      "React Native",
+      "Mobile UI",
+      "Navigation",
+      "API Integration",
+      "Async Storage",
+      "App Release"
+    ],
     "roadmapSteps": [
       {
-        "id": "mb-mobile-foundations",
-        "title": "1. Mobile App Foundations",
+        "id": "mobile-developer-mobile-app-foundations",
+        "title": "Mobile App Foundations",
         "description": "Understand mobile constraints, platform patterns, navigation, and touch-first interface expectations.",
-        "subtopics": ["Mobile UX patterns", "Platform differences", "Responsive app layouts"],
+        "subtopics": [
+          "Mobile UX patterns",
+          "Platform differences",
+          "Responsive app layouts"
+        ],
         "externalResources": [
           {
             "title": "React Native Introduction",
@@ -765,10 +1038,14 @@
         ]
       },
       {
-        "id": "mb-navigation",
-        "title": "2. Navigation & Screen Architecture",
+        "id": "mobile-developer-navigation-screen-architecture",
+        "title": "Navigation & Screen Architecture",
         "description": "Structure app screens, tabs, stacks, route params, and protected navigation flows.",
-        "subtopics": ["Stack navigation", "Tabs", "Route params"],
+        "subtopics": [
+          "Stack navigation",
+          "Tabs",
+          "Route params"
+        ],
         "externalResources": [
           {
             "title": "React Navigation Docs",
@@ -778,10 +1055,14 @@
         ]
       },
       {
-        "id": "mb-api-state",
-        "title": "3. API Integration & App State",
+        "id": "mobile-developer-api-integration-app-state",
+        "title": "API Integration & App State",
         "description": "Connect mobile screens to backend APIs, handle loading states, errors, and cached data.",
-        "subtopics": ["Fetch clients", "Loading states", "Offline-friendly state"],
+        "subtopics": [
+          "Fetch clients",
+          "Loading states",
+          "Offline-friendly state"
+        ],
         "externalResources": [
           {
             "title": "Networking in React Native",
@@ -791,10 +1072,14 @@
         ]
       },
       {
-        "id": "mb-device-features",
-        "title": "4. Device Features & Local Storage",
+        "id": "mobile-developer-device-features-local-storage",
+        "title": "Device Features & Local Storage",
         "description": "Use local storage, media picking, permissions, and device APIs safely.",
-        "subtopics": ["Async storage", "Permissions", "Media picker"],
+        "subtopics": [
+          "Async storage",
+          "Permissions",
+          "Media picker"
+        ],
         "externalResources": [
           {
             "title": "Expo SDK Documentation",
@@ -804,10 +1089,14 @@
         ]
       },
       {
-        "id": "mb-release",
-        "title": "5. Testing & Release Preparation",
+        "id": "mobile-developer-testing-release-preparation",
+        "title": "Testing & Release Preparation",
         "description": "Prepare builds, test core flows, write release notes, and package the app for reviewers.",
-        "subtopics": ["Build profiles", "App testing", "Release checklist"],
+        "subtopics": [
+          "Build profiles",
+          "App testing",
+          "Release checklist"
+        ],
         "externalResources": [
           {
             "title": "Expo Build and Submit",
@@ -827,13 +1116,25 @@
     "duration": "14-18 weeks",
     "outcome": "Applied AI demo project",
     "portfolioOutcome": "An applied AI project with dataset notes, evaluation metrics, and product integration demo.",
-    "skills": ["Python", "Pandas", "Machine Learning", "Model Evaluation", "Prompt Engineering", "AI APIs", "MLOps Basics"],
+    "skills": [
+      "Python",
+      "Pandas",
+      "Machine Learning",
+      "Model Evaluation",
+      "Prompt Engineering",
+      "AI APIs",
+      "MLOps Basics"
+    ],
     "roadmapSteps": [
       {
-        "id": "ai-python-data",
-        "title": "1. Python for Data Work",
+        "id": "ai-ml-python-for-data-work",
+        "title": "Python for Data Work",
         "description": "Use Python notebooks, data structures, and libraries to inspect and transform datasets.",
-        "subtopics": ["Python basics", "Jupyter notebooks", "Pandas dataframes"],
+        "subtopics": [
+          "Python basics",
+          "Jupyter notebooks",
+          "Pandas dataframes"
+        ],
         "externalResources": [
           {
             "title": "Python for Everybody",
@@ -843,10 +1144,14 @@
         ]
       },
       {
-        "id": "ai-data-prep",
-        "title": "2. Data Preparation & Feature Thinking",
+        "id": "ai-ml-data-preparation-feature-thinking",
+        "title": "Data Preparation & Feature Thinking",
         "description": "Clean datasets, handle missing values, engineer features, and avoid leakage.",
-        "subtopics": ["Missing values", "Feature engineering", "Train-test split"],
+        "subtopics": [
+          "Missing values",
+          "Feature engineering",
+          "Train-test split"
+        ],
         "externalResources": [
           {
             "title": "Pandas User Guide",
@@ -856,10 +1161,14 @@
         ]
       },
       {
-        "id": "ai-model-basics",
-        "title": "3. Machine Learning Model Basics",
+        "id": "ai-ml-machine-learning-model-basics",
+        "title": "Machine Learning Model Basics",
         "description": "Train baseline models and understand classification, regression, and evaluation metrics.",
-        "subtopics": ["Classification", "Regression", "Model metrics"],
+        "subtopics": [
+          "Classification",
+          "Regression",
+          "Model metrics"
+        ],
         "externalResources": [
           {
             "title": "Scikit-learn User Guide",
@@ -869,10 +1178,14 @@
         ]
       },
       {
-        "id": "ai-product-integration",
-        "title": "4. AI Product Integration",
+        "id": "ai-ml-ai-product-integration",
+        "title": "AI Product Integration",
         "description": "Integrate model or AI API outputs into a product workflow with guardrails and clear UX.",
-        "subtopics": ["AI API calls", "Prompt design", "Fallback states"],
+        "subtopics": [
+          "AI API calls",
+          "Prompt design",
+          "Fallback states"
+        ],
         "externalResources": [
           {
             "title": "OpenAI API Documentation",
@@ -882,10 +1195,14 @@
         ]
       },
       {
-        "id": "ai-evaluation-demo",
-        "title": "5. Evaluation & Demo Packaging",
+        "id": "ai-ml-evaluation-demo-packaging",
+        "title": "Evaluation & Demo Packaging",
         "description": "Evaluate model behavior, document limitations, and package the project for stakeholder review.",
-        "subtopics": ["Evaluation metrics", "Error analysis", "Demo writeup"],
+        "subtopics": [
+          "Evaluation metrics",
+          "Error analysis",
+          "Demo writeup"
+        ],
         "externalResources": [
           {
             "title": "Machine Learning Crash Course",
