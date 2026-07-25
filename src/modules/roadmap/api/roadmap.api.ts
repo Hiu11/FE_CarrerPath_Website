@@ -7,6 +7,7 @@ import type {
 } from '../types';
 
 export const roadmapApi = {
+  getPublicRoadmaps: () => http.get<CareerPath[]>('/roadmaps'),
   getByCareerId: (careerId: string) => http.get<CareerPath>(`/roadmaps/${careerId}`),
   getRecommendations: (input: CareerRecommendationInput) =>
     http.post<{ recommendations: CareerRecommendation[] }>('/roadmaps/recommendations', input, {

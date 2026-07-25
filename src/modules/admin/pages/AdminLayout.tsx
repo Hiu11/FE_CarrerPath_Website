@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Route, BookOpen, FileText, BarChart3, Settings, HelpCircle, Plus } from 'lucide-react';
+import { LayoutDashboard, Route, BookOpen, FileText, BarChart3, Settings, HelpCircle, Plus, PlayCircle } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { authApi } from '@/modules/auth/api/auth.api';
@@ -12,6 +12,7 @@ const navItems = [
   { name: 'Skill Library', path: '/admin/skills', icon: BookOpen },
   { name: 'Resources', path: '/admin/resources', icon: FileText },
   { name: 'Users Analytics', path: '/admin/analytics', icon: BarChart3 },
+  { name: 'Demo Studio', path: '/admin/demo-studio', icon: PlayCircle },
 ];
 
 export const AdminLayout = () => {

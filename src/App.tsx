@@ -25,6 +25,7 @@ import { AdminResourcesPage } from '@/modules/admin/pages/AdminResourcesPage';
 import { AdminSettingsPage } from '@/modules/admin/pages/AdminSettingsPage';
 import { AdminSupportPage } from '@/modules/admin/pages/AdminSupportPage';
 import { AdminDashboardPage } from '@/modules/admin/pages/AdminDashboardPage';
+import { AdminDemoStudioPage } from '@/modules/admin/pages/AdminDemoStudioPage';
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
         <Route path="resources" element={<AdminResourcesPage />} />
         <Route path="roadmaps" element={<AdminRoadmapsPage />} />
         <Route path="users" element={<AdminUsersPage />} />
+        <Route path="demo-studio" element={<AdminDemoStudioPage />} />
         <Route path="settings" element={<AdminSettingsPage />} />
         <Route path="support" element={<AdminSupportPage />} />
         <Route index element={<Navigate to="dashboard" replace />} />

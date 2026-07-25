@@ -10,13 +10,11 @@ import { Textarea } from '@/shared/components/ui/textarea';
 import type { CareerPath, CareerRecommendation, CareerRecommendationHistory } from '../types';
 import { roadmapApi } from '../api/roadmap.api';
 import { CareerCard } from '../components/CareerCard';
-import careerPathsData from '../data/careers.json';
-
-const careerPaths = careerPathsData as CareerPath[];
-
 export const RoadmapPage = () => {
   const navigate = useNavigate();
   const isSignedIn = Boolean(tokenStore.get());
+  const [careerPaths, setCareerPaths] = useState<CareerPath[]>([]);
+  const [isLoadingPaths, setIsLoadingPaths] = useState(true);
   const [skills, setSkills] = useState('');
   const [interests, setInterests] = useState('');
   const [goals, setGoals] = useState('');
@@ -28,6 +26,14 @@ export const RoadmapPage = () => {
   const [categoryFilter, setCategoryFilter] = useState('All');
   const [difficultyFilter, setDifficultyFilter] = useState('All');
 
+  useEffect(() => {
+    setIsLoadingPaths(true);
+    roadmapApi.getPublicRoadmaps()
+      .then((response) => setCareerPaths(response.data || []))
+      .catch(() => setCareerPaths([]))
+      .finally(() => setIsLoadingPaths(false));
+  }, []);
+
   const categories = ['All', ...Array.from(new Set(careerPaths.map((career) => career.category ?? 'Other')))];
   const difficulties = ['All', 'Beginner', 'Intermediate', 'Advanced'];
 
@@ -36,7 +42,7 @@ export const RoadmapPage = () => {
     const matchesSearch = !query
       || career.careerTitle.toLowerCase().includes(query)
       || career.description.toLowerCase().includes(query)
-      || career.skills.some((skill) => skill.toLowerCase().includes(query))
+      || (career.skills || []).some((skill) => skill.toLowerCase().includes(query))
       || career.outcome?.toLowerCase().includes(query);
     const matchesCategory = categoryFilter === 'All' || career.category === categoryFilter;
     const matchesDifficulty = difficultyFilter === 'All' || career.difficulty === difficultyFilter;
@@ -324,20 +330,29 @@ export const RoadmapPage = () => {
           )}
         </section>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredCareerPaths.map((career) => (
-            <CareerCard
-              key={career.id}
-              career={career}
-              onViewRoadmap={handleSelectCareer}
-            />
-          ))}
-        </div>
-        {filteredCareerPaths.length === 0 && (
-          <div className="border-2 border-dashed border-foreground bg-card p-8 text-center rounded-[4px]">
-            <p className="font-mono text-sm font-bold uppercase">No career paths match your filters</p>
-            <p className="mt-2 text-sm text-muted-foreground">Try another keyword, category, or difficulty level.</p>
+        {isLoadingPaths ? (
+          <div className="flex flex-col items-center justify-center py-12 border-2 border-dashed border-foreground bg-card rounded-[4px] shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+            <Loader2 className="size-8 animate-spin text-primary" />
+            <p className="mt-3 font-mono text-xs uppercase font-bold">Loading career paths...</p>
           </div>
+        ) : (
+          <>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {filteredCareerPaths.map((career) => (
+                <CareerCard
+                  key={career.id}
+                  career={career}
+                  onViewRoadmap={handleSelectCareer}
+                />
+              ))}
+            </div>
+            {filteredCareerPaths.length === 0 && (
+              <div className="border-2 border-dashed border-foreground bg-card p-8 text-center rounded-[4px]">
+                <p className="font-mono text-sm font-bold uppercase">No career paths match your filters</p>
+                <p className="mt-2 text-sm text-muted-foreground">Try another keyword, category, or difficulty level.</p>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

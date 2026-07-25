@@ -14,6 +14,7 @@ export const adminApi = {
   updateCareerPath: (id: string, data: any) => http.put(`/admin/career-paths/${id}`, data),
   deleteCareerPath: (id: string) => http.delete(`/admin/career-paths/${id}`),
   seedCareerPaths: () => http.post('/admin/career-paths/seed'),
+  qualityCheckCareerPath: (id: string) => http.get(`/admin/career-paths/${id}/quality-check`),
 
 
   // Skills
