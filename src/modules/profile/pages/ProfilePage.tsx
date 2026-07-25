@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { HelpCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { authApi } from '@/modules/auth/api/auth.api';
 import { tokenStore } from '@/modules/auth/store/token.store';
 import { AvatarUpload } from '@/modules/profile/components/AvatarUpload';
 import { CvUpload } from '@/modules/profile/components/CvUpload';
@@ -9,6 +8,7 @@ import { PortfolioManager } from '@/modules/profile/components/PortfolioManager'
 import { ProfileEditForm } from '@/modules/profile/components/ProfileEditForm';
 import { StudyReminderCard } from '@/modules/profile/components/StudyReminderCard';
 import type { PortfolioItem } from '@/modules/profile/api/profile.api';
+import { useAuth } from '@/modules/auth/context/AuthContext';
 import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import {
@@ -34,15 +34,20 @@ type ProfileUser = CurrentUser & {
 };
 
 export const ProfilePage = () => {
+  const { user: authUser, updateUser, refreshUser } = useAuth();
   const [user, setUser] = useState<ProfileUser | null>(null);
   const [learnedSkills, setLearnedSkills] = useState<string[]>([]);
   const [loadingSkills, setLoadingSkills] = useState(false);
   const navigate = useNavigate();
 
+  // Sync local user state with auth context
+  useEffect(() => {
+    if (authUser) setUser(authUser as ProfileUser);
+  }, [authUser]);
+
   const fetchUser = async () => {
     try {
-      const res = await authApi.getMe();
-      setUser(res.data as ProfileUser);
+      await refreshUser();
     } catch {
       tokenStore.clear();
       navigate('/logout');
@@ -86,7 +91,6 @@ export const ProfilePage = () => {
   };
 
   useEffect(() => {
-    void fetchUser();
     void fetchSkills();
   }, []);
 
@@ -106,7 +110,12 @@ export const ProfilePage = () => {
             <AvatarUpload
               currentAvatarUrl={user?.avatarUrl}
               userInitials={initials}
-              onUploadSuccess={(newUrl) => setUser((prev) => prev ? { ...prev, avatarUrl: newUrl } : prev)}
+              onUploadSuccess={(newUrl) => {
+                // Update global auth context (updates navbar avatar immediately)
+                updateUser({ avatarUrl: newUrl });
+                // Also update local state for the profile page
+                setUser((prev) => prev ? { ...prev, avatarUrl: newUrl } : prev);
+              }}
             />
             <div className="text-center">
               {user?.displayName && (

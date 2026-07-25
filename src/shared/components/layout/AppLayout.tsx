@@ -1,43 +1,22 @@
-import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { ThemeToggle } from '@/shared/components/ui/theme-toggle';
-import { authApi } from '@/modules/auth/api/auth.api';
 import { tokenStore } from '@/modules/auth/store/token.store';
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/components/ui/avatar';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from '@/shared/components/ui/dropdown-menu';
 import { LogOut, User as UserIcon, LayoutDashboard, ShieldAlert, ClipboardList } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
-import type { CurrentUser } from '@/modules/auth/types/auth.types';
 import logoLight from '@/assets/brand/roadmap-logo-light.png';
 import logoDark from '@/assets/brand/roadmap-logo-dark.png';
+import { useAuth } from '@/modules/auth/context/AuthContext';
 
 export const AppLayout = () => {
-  const [user, setUser] = useState<CurrentUser | null>(null);
+  const { user, clearUser } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = tokenStore.get();
-    if (token) {
-      authApi.getMe()
-        .then((res) => {
-          if (res?.data) {
-            const userData = res.data as CurrentUser;
-            setUser((prev) => (prev?.email === userData.email ? prev : userData));
-          }
-        })
-        .catch(() => {
-          tokenStore.clear();
-          setTimeout(() => setUser(null), 0);
-        });
-    } else {
-      setTimeout(() => setUser(null), 0);
-    }
-  }, [location.pathname]);
-
   const handleLogout = () => {
     tokenStore.clear();
-    setUser(null);
+    clearUser();
     navigate('/login');
   };
 

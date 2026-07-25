@@ -5,14 +5,18 @@ import './index.css';
 import App from './App';
 import { Toaster } from '@/shared/components/ui/sonner';
 import { applyTheme, getTheme } from '@/shared/lib/utils';
+import { AuthProvider } from '@/modules/auth/context/AuthContext';
 
 applyTheme(getTheme());
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
-      <Toaster />
+      <AuthProvider>
+        <App />
+        <Toaster />
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>
 );
+

@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { authApi } from '../api/auth.api';
 import { tokenStore } from '../store/token.store';
 import { OtpInput } from '@/shared/components/ui/otp-input';
+import { useAuth } from '@/modules/auth/context/AuthContext';
 
 const loginSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Invalid email'),
@@ -24,6 +25,7 @@ export const LoginPage = () => {
     resolver: zodResolver(loginSchema),
   });
   const navigate = useNavigate();
+  const { refreshUser } = useAuth();
 
   const onLoginSubmit = handleSubmit(async (values) => {
     setLoading(true);
@@ -32,6 +34,7 @@ export const LoginPage = () => {
       const token = response.data?.token as string | undefined;
       if (token) {
         tokenStore.set(token);
+        await refreshUser();
         toast.success('Logged in successfully.');
         navigate('/');
         return;
@@ -66,6 +69,7 @@ export const LoginPage = () => {
     try {
       const response = await authApi.verifyLoginOtp(email, otp);
       tokenStore.set(response.data.token);
+      await refreshUser();
       toast.success('Logged in successfully.');
       navigate('/');
     } catch (error: unknown) {
@@ -76,6 +80,7 @@ export const LoginPage = () => {
       setLoading(false);
     }
   };
+
 
   const handleThirdPartySignIn = (provider: string) => {
     toast.info(`Sign in with ${provider} is placeholder. Ready for backend integration.`);
