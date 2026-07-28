@@ -128,7 +128,7 @@ interface DashboardData {
 }
 
 const cardClass =
-  'border-2 border-foreground bg-card text-card-foreground rounded-[4px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]';
+  'border-2 border-foreground bg-card text-card-foreground rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]';
 
 const priorityClass: Record<DashboardAction['priority'], string> = {
   high: 'bg-primary text-primary-foreground',
@@ -183,7 +183,7 @@ export const DashboardPage = () => {
 
   if (loading) {
     return (
-      <div className="mx-auto flex min-h-[460px] max-w-6xl items-center justify-center px-4">
+      <div className="mx-auto flex min-h-115 max-w-6xl items-center justify-center px-4">
         <div className={`${cardClass} flex items-center gap-3 p-5 font-mono text-xs font-bold uppercase`}>
           <Loader2 className="h-4 w-4 animate-spin" />
           Building your career command center
@@ -244,13 +244,13 @@ export const DashboardPage = () => {
                     <span>{data.careerGoal.completedCount} / {data.careerGoal.totalCount} steps complete</span>
                     <span className="text-primary">{data.careerGoal.progress}%</span>
                   </div>
-                  <div className="h-4 overflow-hidden rounded-[2px] border-2 border-foreground bg-muted p-[2px]">
+                  <div className="h-4 overflow-hidden rounded-[2px] border-2 border-foreground bg-muted p-0.5">
                     <div className="h-full bg-primary transition-all duration-500" style={{ width: `${data.careerGoal.progress}%` }} />
                   </div>
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
-                  <div className="rounded-[4px] border border-foreground bg-background p-4">
+                  <div className="rounded-lg border border-foreground bg-background p-4">
                     <p className="font-mono text-[10px] font-bold uppercase text-muted-foreground">Next milestone</p>
                     <p className="mt-1 font-mono text-sm font-extrabold uppercase">
                       {data.careerGoal.nextMilestone?.title || 'Roadmap completed'}
@@ -313,7 +313,7 @@ export const DashboardPage = () => {
               <button
                 key={step.title}
                 onClick={() => navigate(step.href)}
-                className="min-h-28 rounded-[4px] border border-foreground bg-background p-4 text-left transition hover:bg-muted"
+                className="min-h-28 rounded-lg border border-foreground bg-background p-4 text-left transition hover:bg-muted"
               >
                 <span className="font-mono text-[10px] font-bold uppercase text-muted-foreground">Step {index + 1}</span>
                 <p className="mt-2 font-mono text-xs font-extrabold uppercase">{step.title}</p>
@@ -348,7 +348,7 @@ export const DashboardPage = () => {
           </div>
           <div className="space-y-3">
             {data.nextActions.length > 0 ? data.nextActions.map((action) => (
-              <article key={`${action.title}-${action.href}`} className="rounded-[4px] border border-foreground bg-background p-4">
+              <article key={`${action.title}-${action.href}`} className="rounded-lg border border-foreground bg-background p-4">
                 <div className="mb-3 flex items-start justify-between gap-3">
                   <div>
                     <span className={`inline-flex rounded-[2px] border border-foreground px-2 py-0.5 font-mono text-[10px] font-bold uppercase ${priorityClass[action.priority]}`}>
@@ -379,7 +379,7 @@ export const DashboardPage = () => {
             <span className="font-mono text-[10px] uppercase text-muted-foreground">Last 7 days</span>
           </div>
           {data.hasActivity ? (
-            <div className="h-[280px]">
+            <div className="h-70">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={data.history} margin={{ top: 10, right: 8, left: -24, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" opacity={0.18} />
@@ -400,7 +400,7 @@ export const DashboardPage = () => {
             <h2 className="font-mono text-sm font-extrabold uppercase">Quiz insight</h2>
           </div>
           <div className="space-y-4">
-            <div className="rounded-[4px] border border-foreground bg-background p-4">
+            <div className="rounded-lg border border-foreground bg-background p-4">
               <span className="font-mono text-[10px] font-bold uppercase text-muted-foreground">
                 {data.quizInsight.careerTitle || 'Suggested quiz'}
               </span>
@@ -477,7 +477,7 @@ export const DashboardPage = () => {
             <span className="font-mono text-[10px] uppercase text-muted-foreground">{enrolledCareers.length} enrolled</span>
           </div>
           {enrolledCareers.length > 0 ? (
-            <div className="h-[260px]">
+            <div className="h-65">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={enrolledCareers} margin={{ top: 10, right: 8, left: -24, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" opacity={0.18} />
@@ -506,10 +506,10 @@ const Metric = ({
   label: string;
   value: string | number;
 }) => (
-  <div className="min-h-32 rounded-[4px] border border-foreground bg-background p-4">
+  <div className="min-h-32 rounded-lg border border-foreground bg-background p-4">
     <Icon className="h-5 w-5 text-primary" />
     <p className="mt-4 font-mono text-[10px] font-bold uppercase text-muted-foreground">{label}</p>
-    <p className="mt-1 break-words font-mono text-2xl font-extrabold uppercase">{value}</p>
+    <p className="mt-1 wrap-break-word font-mono text-2xl font-extrabold uppercase">{value}</p>
   </div>
 );
 
@@ -533,7 +533,7 @@ const SkillColumn = ({
         : 'bg-background text-foreground';
 
   return (
-    <div className="rounded-[4px] border border-foreground bg-background p-4">
+    <div className="rounded-lg border border-foreground bg-background p-4">
       <h3 className="mb-3 font-mono text-xs font-extrabold uppercase">{title}</h3>
       {items.length > 0 ? (
         <div className="flex flex-wrap gap-2">
@@ -544,7 +544,7 @@ const SkillColumn = ({
               title={item.reason}
             >
               <Icon className="h-3 w-3 shrink-0" />
-              <span className="min-w-0 break-words">{item.title}</span>
+              <span className="min-w-0 wrap-break-word">{item.title}</span>
             </span>
           ))}
         </div>
@@ -566,7 +566,7 @@ const EmptyState = ({
   cta: string;
   onClick: () => void;
 }) => (
-  <div className="rounded-[4px] border border-dashed border-foreground bg-muted/40 p-5">
+  <div className="rounded-lg border border-dashed border-foreground bg-muted/40 p-5">
     <p className="font-mono text-sm font-extrabold uppercase">{title}</p>
     <p className="mt-2 text-sm leading-6 text-muted-foreground">{body}</p>
     <button
