@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CareerPath - Slide thuyết trình dự án</title>
+  <style>
+    :root {
+      --bg: #f7f3ea;
+      --ink: #1b1a17;
+      --muted: #686157;
+      --panel: #fffaf0;
+      --line: #1b1a17;
+      --primary: #e4562e;
+      --teal: #16857f;
+      --blue: #315c9b;
+      --green: #4d7f3c;
+      --yellow: #f1bd45;
+      --shadow: 7px 7px 0 #1b1a17;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(27, 26, 23, 0.055) 1px, transparent 1px),
+        linear-gradient(rgba(27, 26, 23, 0.055) 1px, transparent 1px),
+        var(--bg);
+      background-size: 34px 34px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      padding: 34px 7vw 46px;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .slide.active {
+      display: grid;
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide-inner {
+      width: min(1180px, 100%);
+      height: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 18px;
+    }
+
+    .content {
+      min-height: 0;
+      display: grid;
+      align-content: center;
+      gap: 22px;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      max-width: 920px;
+      font-size: clamp(46px, 6.5vw, 82px);
+      line-height: 0.92;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      max-width: 980px;
+      font-size: clamp(34px, 4.5vw, 58px);
+      line-height: 0.98;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      font-size: clamp(20px, 2vw, 29px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    p, li {
+      font-size: clamp(16px, 1.35vw, 21px);
+      line-height: 1.34;
+      color: var(--muted);
+    }
+
+    ul {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding-left: 24px;
+    }
+
+    strong { color: var(--ink); }
+
+    .kicker {
+      width: fit-content;
+      border: 2px solid var(--line);
+      background: #fff;
+      padding: 8px 12px;
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 4px 4px 0 var(--line);
+    }
+
+    .hero-layout,
+    .two-column {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel,
+    .hero-panel,
+    .card,
+    .metric,
+    .step,
+    .image-frame {
+      border: 2px solid var(--line);
+      background: #fff;
+      box-shadow: 5px 5px 0 var(--line);
+    }
+
+    .panel,
+    .hero-panel {
+      background: var(--panel);
+      padding: 22px;
+      border-width: 3px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel {
+      min-height: 390px;
+      display: grid;
+      gap: 16px;
+      align-content: space-between;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(228, 86, 46, 0.16), transparent 34%),
+        linear-gradient(315deg, rgba(22, 133, 127, 0.16), transparent 40%),
+        #fffaf0;
+    }
+
+    .logo-mark {
+      width: 82px;
+      height: 82px;
+      display: grid;
+      place-items: center;
+      border: 3px solid var(--line);
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 5px 5px 0 var(--line);
+      font-size: 34px;
+      font-weight: 950;
+    }
+
+    .big-number {
+      font-size: clamp(60px, 8vw, 112px);
+      line-height: 0.86;
+      font-weight: 950;
+      color: var(--primary);
+      letter-spacing: 0;
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .metrics,
+    .timeline,
+    .comparison,
+    .architecture,
+    .flow {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-2, .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3, .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      min-height: 128px;
+      display: grid;
+      align-content: start;
+      gap: 10px;
+      padding: 16px;
+    }
+
+    .card strong {
+      font-size: clamp(18px, 1.65vw, 25px);
+      line-height: 1.05;
+    }
+
+    .card p,
+    .step p,
+    .metric p {
+      font-size: clamp(14px, 1.05vw, 17px);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .tag {
+      border: 2px solid var(--line);
+      background: #fff;
+      padding: 7px 10px;
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .image-frame {
+      min-height: 300px;
+      overflow: hidden;
+      background: #101010;
+      position: relative;
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .image-frame.logo {
+      background: #1b1a17;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+
+    .image-frame.logo img {
+      width: min(360px, 86%);
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.32));
+    }
+
+    .mock-app {
+      min-height: 330px;
+      border: 3px solid var(--line);
+      background: #101010;
+      color: #fff;
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .browser-bar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.22);
+      padding-bottom: 14px;
+    }
+
+    .browser-bar span {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    .browser-bar span:nth-child(2) { background: var(--yellow); }
+    .browser-bar span:nth-child(3) { background: #56b37f; }
+
+    .mock-grid {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 16px;
+      padding-top: 20px;
+    }
+
+    .mock-side,
+    .mock-main {
+      display: grid;
+      gap: 11px;
+    }
+
+    .mock-line {
+      height: 16px;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 2px;
+    }
+
+    .mock-node {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: center;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .mock-node span {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      background: var(--primary);
+      font-weight: 900;
+    }
+
+    .mock-node h3,
+    .mock-node p {
+      color: #fff;
+    }
+
+    .metric {
+      padding: 18px;
+      min-height: 135px;
+    }
+
+    .metric b {
+      display: block;
+      font-size: clamp(38px, 4.5vw, 66px);
+      line-height: 0.9;
+      color: var(--primary);
+    }
+
+    .timeline {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .step {
+      min-height: 160px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+      padding: 16px;
+    }
+
+    .dot {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--line);
+      background: var(--primary);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 950;
+    }
+
+    .architecture {
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+    }
+
+    .arch-box {
+      min-height: 205px;
+      display: grid;
+      gap: 12px;
+      align-content: center;
+      text-align: center;
+      border: 3px solid var(--line);
+      background: #fff;
+      padding: 20px;
+      box-shadow: 5px 5px 0 var(--line);
+    }
+
+    .arrow {
+      font-size: 30px;
+      font-weight: 950;
+      color: var(--primary);
+    }
+
+    .flow {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .controls {
+      position: fixed;
+      right: 24px;
+      bottom: 22px;
+      z-index: 20;
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      width: 42px;
+      height: 38px;
+      border: 2px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font-size: 20px;
+      font-weight: 900;
+      box-shadow: 3px 3px 0 var(--line);
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--line);
+    }
+
+    .progress {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 30;
+      width: 100%;
+      height: 6px;
+      background: rgba(27, 26, 23, 0.14);
+    }
+
+    .progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--primary);
+      transition: width 160ms ease;
+    }
+
+    .accent-primary { color: var(--primary); }
+    .accent-teal { color: var(--teal); }
+    .accent-blue { color: var(--blue); }
+
+    @media (max-width: 900px) {
+      body { overflow: auto; }
+      .deck { height: auto; }
+      .slide {
+        position: static;
+        min-height: 100vh;
+        padding: 24px 18px 70px;
+      }
+      .slide.active { display: block; }
+      .slide:not(.active) { display: none; }
+      .slide-inner,
+      .content,
+      .hero-layout,
+      .two-column,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .metrics,
+      .timeline,
+      .comparison,
+      .architecture,
+      .flow,
+      .mock-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      .arrow { display: none; }
+      .hero-panel, .mock-app, .image-frame { min-height: 280px; }
+    }
+
+    @media print {
+      body { overflow: visible; background: #fff; }
+      .slide {
+        position: static;
+        display: block;
+        opacity: 1;
+        transform: none;
+        height: 100vh;
+        break-after: page;
+      }
+      .controls, .progress { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" aria-live="polite">
+    <section class="slide active">
+      <div class="slide-inner">
+        <div class="kicker">CareerPath Website · Fullstack Project</div>
+        <div class="content hero-layout">
+          <div class="hero-copy">
+            <h1>CareerPath Learning Platform</h1>
+            <p>Nền tảng định hướng lộ trình học nghề công nghệ, giúp người học biết nên học gì, học theo thứ tự nào và đo tiến độ ra sao.</p>
+            <div class="tag-row">
+              <span class="tag">React</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Express</span>
+              <span class="tag">MongoDB</span>
+              <span class="tag">Admin CMS</span>
+            </div>
+          </div>
+          <div class="image-frame logo">
+            <img src="public/roadmap-logo-light.png" alt="CareerPath logo" />
+          </div>
+        </div>
+        <div class="footer"><span>Dự án cuối khóa</span><span>Phím ← / → để chuyển slide</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">01 · Giới thiệu dự án</div>
+        <div class="content two-column">
+          <div>
+            <h2>CareerPath là bản đồ học tập cho người muốn vào ngành IT</h2>
+            <p style="margin-top: 18px;">Dự án trả lời một câu hỏi rất thực tế: nếu một bạn mới bắt đầu học công nghệ, bạn ấy nên đi theo lộ trình nào để không bị lạc hướng?</p>
+          </div>
+          <div class="grid-2">
+            <div class="card"><strong>Chọn nghề</strong><p>Frontend, Backend, Fullstack, Data, UI/UX, QA, Product, Mobile, AI/ML.</p></div>
+            <div class="card"><strong>Học theo roadmap</strong><p>Mỗi roadmap có step, skill, subtopic, resource và outcome rõ ràng.</p></div>
+            <div class="card"><strong>Theo dõi tiến độ</strong><p>Người học có dashboard, progress, quiz history và profile cá nhân.</p></div>
+            <div class="card"><strong>Admin quản trị</strong><p>Admin quản lý user, skill, resource, roadmap và career path.</p></div>
+          </div>
+        </div>
+        <div class="footer"><span>Project Introduction</span><span>2 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">02 · Bối cảnh</div>
+        <div class="content">
+          <h2>Học lập trình không thiếu tài nguyên, nhưng thiếu một hệ thống dẫn đường</h2>
+          <div class="comparison">
+            <div class="panel">
+              <h3>Thực trạng</h3>
+              <ul>
+                <li>Quá nhiều video, khóa học, bài viết và tutorial.</li>
+                <li>Người học dễ nhảy từ topic này sang topic khác.</li>
+                <li>Khó biết mình đã đủ kiến thức để làm project chưa.</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Hệ quả</h3>
+              <ul>
+                <li>Mất động lực vì học lâu nhưng không thấy tiến bộ.</li>
+                <li>Tốn thời gian vào nội dung chưa phù hợp giai đoạn.</li>
+                <li>Portfolio yếu vì kiến thức không gắn với sản phẩm.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span>Context</span><span>3 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">03 · Vấn đề cần giải quyết</div>
+        <div class="content two-column">
+          <div>
+            <h2>Người học không có lộ trình cá nhân và feedback liên tục</h2>
+            <p style="margin-top: 18px;">Nếu chỉ đưa tài nguyên, người học vẫn phải tự quyết định thứ tự học. CareerPath thêm lớp cấu trúc, tiến độ và kiểm tra để biến việc học thành hành trình có thể quản lý.</p>
+          </div>
+          <div class="grid-2">
+            <div class="card"><strong>Không rõ bắt đầu từ đâu</strong><p>Cần thứ tự ưu tiên, không chỉ một danh sách link.</p></div>
+            <div class="card"><strong>Không rõ đang ở đâu</strong><p>Progress cho thấy phần đã làm và phần tiếp theo.</p></div>
+            <div class="card"><strong>Không rõ đã hiểu chưa</strong><p>Quiz giúp kiểm tra lại kiến thức theo từng skill.</p></div>
+            <div class="card"><strong>Không rõ đầu ra</strong><p>Mỗi lộ trình gắn với outcome và portfolio outcome.</p></div>
+          </div>
+        </div>
+        <div class="footer"><span>Problem Statement</span><span>4 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">04 · Dự án giải quyết gì?</div>
+        <div class="content">
+          <h2>CareerPath biến việc học lan man thành quy trình học có mục tiêu</h2>
+          <div class="flow">
+            <div class="step"><div class="dot">1</div><h3>Chọn mục tiêu</h3><p>Người học chọn hướng nghề phù hợp với mong muốn.</p></div>
+            <div class="step"><div class="dot">2</div><h3>Học từng bước</h3><p>Roadmap chia nhỏ kiến thức theo node và subtopic.</p></div>
+            <div class="step"><div class="dot">3</div><h3>Kiểm tra</h3><p>Quiz giúp xác nhận mức độ hiểu từng kỹ năng.</p></div>
+            <div class="step"><div class="dot">4</div><h3>Theo dõi</h3><p>Dashboard và profile lưu tiến độ học tập cá nhân.</p></div>
+          </div>
+        </div>
+        <div class="footer"><span>Solution Fit</span><span>5 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">05 · Đối tượng người dùng</div>
+        <div class="content">
+          <h2>Sản phẩm phục vụ cả người học và người quản trị nội dung</h2>
+          <div class="grid-3">
+            <div class="card"><strong>Học viên mới bắt đầu</strong><p>Cần lộ trình từng bước để biết học gì trước và học gì sau.</p></div>
+            <div class="card"><strong>Học viên nâng cấp kỹ năng</strong><p>Cần quiz, history và dashboard để nhìn thấy tiến độ.</p></div>
+            <div class="card"><strong>Admin / mentor</strong><p>Cần quản lý roadmap, skill, resource, user và dữ liệu demo.</p></div>
+          </div>
+          <div class="panel">
+            <p><strong class="accent-primary">Insight:</strong> người học không chỉ cần nội dung. Họ cần biết “đang ở đâu”, “nên đi đâu” và “đã đủ năng lực chưa”.</p>
+          </div>
+        </div>
+        <div class="footer"><span>Target Users</span><span>6 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">06 · Giá trị mang lại</div>
+        <div class="content two-column">
+          <div>
+            <h2>Giá trị không nằm ở việc liệt kê thật nhiều link</h2>
+            <p style="margin-top: 18px;">Điểm quan trọng là tạo một quy trình học có mục tiêu, có checkpoint, có tiến độ và có kết quả cụ thể để demo.</p>
+          </div>
+          <div class="grid-2">
+            <div class="card"><strong>Giảm rối thông tin</strong><p>Tài nguyên được đặt đúng bước học và đúng kỹ năng.</p></div>
+            <div class="card"><strong>Tăng động lực</strong><p>Progress tạo cảm giác tiến bộ sau từng milestone.</p></div>
+            <div class="card"><strong>Tăng khả năng tự học</strong><p>Người học chủ động đi theo lộ trình có cấu trúc.</p></div>
+            <div class="card"><strong>Hướng đến portfolio</strong><p>Mỗi career path có outcome để tạo sản phẩm demo.</p></div>
+          </div>
+        </div>
+        <div class="footer"><span>Value Proposition</span><span>7 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">07 · Tính năng chính</div>
+        <div class="content">
+          <h2>Các module đã xây dựng trong phiên bản hiện tại</h2>
+          <div class="grid-4">
+            <div class="card"><strong>Auth</strong><p>Đăng ký, đăng nhập, quên mật khẩu, protected route.</p></div>
+            <div class="card"><strong>Roadmap</strong><p>Danh sách career path và trang chi tiết từng lộ trình.</p></div>
+            <div class="card"><strong>Quiz</strong><p>Làm bài kiểm tra theo skill và xem lịch sử quiz.</p></div>
+            <div class="card"><strong>Progress</strong><p>Lưu trạng thái học tập và tổng quan tiến độ.</p></div>
+            <div class="card"><strong>Dashboard</strong><p>Màn hình tổng hợp tiến độ và hoạt động học tập.</p></div>
+            <div class="card"><strong>Profile</strong><p>Avatar, CV, portfolio, reminder và thông tin cá nhân.</p></div>
+            <div class="card"><strong>Admin</strong><p>Quản lý user, skill, resource, roadmap, career path.</p></div>
+            <div class="card"><strong>Notification</strong><p>Nhắc học và hỗ trợ duy trì thói quen học tập.</p></div>
+          </div>
+        </div>
+        <div class="footer"><span>Feature Set</span><span>8 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">08 · Ảnh minh họa sản phẩm</div>
+        <div class="content hero-layout">
+          <div>
+            <h2>Giao diện hướng đến trải nghiệm học tập rõ ràng</h2>
+            <p style="margin-top: 18px;">Trang chủ, roadmap, dashboard và profile được thiết kế để người học nhìn nhanh được mục tiêu, trạng thái và bước tiếp theo.</p>
+          </div>
+          <div class="image-frame">
+            <img src="src/assets/hero.png" alt="Ảnh minh họa CareerPath" />
+          </div>
+        </div>
+        <div class="footer"><span>Product Visual</span><span>9 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">09 · Điểm khác biệt</div>
+        <div class="content">
+          <h2>Không chỉ là website xem khóa học</h2>
+          <div class="comparison">
+            <div class="panel">
+              <h3>Cách học thông thường</h3>
+              <ul>
+                <li>Tìm link trên Google hoặc YouTube.</li>
+                <li>Học theo cảm hứng, thiếu thứ tự.</li>
+                <li>Không có checkpoint rõ ràng.</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>CareerPath</h3>
+              <ul>
+                <li>Chọn mục tiêu nghề nghiệp trước.</li>
+                <li>Học theo node và subtopic có thứ tự.</li>
+                <li>Có quiz, progress và lịch sử học.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span>Differentiation</span><span>10 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">10 · Demo sản phẩm</div>
+        <div class="content two-column">
+          <div>
+            <h2>Kịch bản demo khi thuyết trình</h2>
+            <ul style="margin-top: 18px;">
+              <li>Mở Home để giới thiệu các career path.</li>
+              <li>Chọn Frontend hoặc Fullstack và xem roadmap detail.</li>
+              <li>Đăng nhập để mở dashboard, profile và quiz.</li>
+              <li>Làm quiz một skill, sau đó xem quiz history.</li>
+              <li>Vào Admin để cho thấy khả năng quản trị nội dung.</li>
+            </ul>
+          </div>
+          <div class="mock-app">
+            <div class="browser-bar"><span></span><span></span><span></span></div>
+            <div class="mock-grid">
+              <div class="mock-side">
+                <div class="mock-line" style="width: 92%;"></div>
+                <div class="mock-line" style="width: 72%;"></div>
+                <div class="mock-line" style="width: 84%;"></div>
+                <div class="mock-line" style="width: 64%;"></div>
+              </div>
+              <div class="mock-main">
+                <div class="mock-node"><span>01</span><div><h3>Choose Career</h3><p>Frontend · Backend · AI/ML · UI/UX</p></div></div>
+                <div class="mock-node"><span>02</span><div><h3>Follow Roadmap</h3><p>Steps · Skills · Resources · Outcome</p></div></div>
+                <div class="mock-node"><span>03</span><div><h3>Track Progress</h3><p>Dashboard · Quiz · Profile · Reminder</p></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span>Demo Script</span><span>11 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">11 · Chuyển qua phần dev</div>
+        <div class="content hero-layout">
+          <div>
+            <h2>Sau demo tính năng, chuyển sang cách hệ thống được xây dựng</h2>
+            <p style="margin-top: 18px;">Đây là slide bridge để nói: “Phần vừa rồi là trải nghiệm người dùng. Tiếp theo em sẽ trình bày cách em xây dựng dự án ở góc độ kỹ thuật.”</p>
+          </div>
+          <div class="panel">
+            <h3>Dev talking points</h3>
+            <ul style="margin-top: 14px;">
+              <li>Cấu trúc FE theo module.</li>
+              <li>BE tách route, controller, service, model.</li>
+              <li>Auth, validation, upload, notification.</li>
+              <li>MongoDB model cho dữ liệu học tập.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer"><span>Demo To Dev</span><span>12 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">12 · Kiến trúc hệ thống</div>
+        <div class="content">
+          <h2>Fullstack tách rõ Frontend, API và Database</h2>
+          <div class="architecture">
+            <div class="arch-box"><h3>Frontend</h3><p>React, Vite, TypeScript, routing theo module, UI component tái sử dụng.</p></div>
+            <div class="arrow">→</div>
+            <div class="arch-box"><h3>Backend API</h3><p>Express, middleware, controller, service, validator và auth flow.</p></div>
+            <div class="arrow">→</div>
+            <div class="arch-box"><h3>MongoDB</h3><p>Lưu user, roadmap, skill, resource, progress, quiz history và notification.</p></div>
+          </div>
+        </div>
+        <div class="footer"><span>Architecture</span><span>13 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">13 · Backend & Security</div>
+        <div class="content two-column">
+          <div>
+            <h2>API được thiết kế theo tầng để dễ bảo trì</h2>
+            <p style="margin-top: 18px;">Backend có route, controller, service, model và validator riêng. Cách chia này giúp dự án dễ đọc, dễ sửa và dễ mở rộng thêm tính năng.</p>
+          </div>
+          <div class="grid-2">
+            <div class="card"><strong>JWT + bcrypt</strong><p>Xác thực người dùng, bảo vệ route riêng tư và phân quyền admin.</p></div>
+            <div class="card"><strong>Zod Validator</strong><p>Kiểm tra dữ liệu đầu vào trước khi xử lý business logic.</p></div>
+            <div class="card"><strong>CORS + Rate limit</strong><p>Giới hạn origin hợp lệ và giảm rủi ro request bất thường.</p></div>
+            <div class="card"><strong>Cloudinary + Email</strong><p>Hỗ trợ upload file, avatar, CV, OTP và reminder học tập.</p></div>
+          </div>
+        </div>
+        <div class="footer"><span>Backend Detail</span><span>14 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">14 · Tech stack</div>
+        <div class="content">
+          <h2>Công nghệ phù hợp một sản phẩm web fullstack hiện đại</h2>
+          <div class="grid-3">
+            <div class="card"><strong class="accent-blue">Frontend</strong><p>React 19, TypeScript, Vite, React Router, Axios, Tailwind CSS, Radix UI, lucide-react.</p></div>
+            <div class="card"><strong class="accent-teal">Backend</strong><p>Node.js, Express 5, TypeScript, Mongoose, JWT, bcryptjs, Zod, Multer.</p></div>
+            <div class="card"><strong class="accent-primary">Services</strong><p>MongoDB, Cloudinary, Nodemailer, Web Push, node-cron, Vercel config.</p></div>
+          </div>
+          <div class="panel">
+            <p><strong>Điểm cộng kỹ thuật:</strong> dự án có cấu trúc FE/BE tách biệt, protected route, admin route, middleware xác thực, seed data và build script riêng.</p>
+          </div>
+        </div>
+        <div class="footer"><span>Technology Stack</span><span>15 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">15 · Kết quả & hướng phát triển</div>
+        <div class="content hero-layout">
+          <div>
+            <h2>Kết quả: một sản phẩm fullstack có thể demo end-to-end</h2>
+            <ul style="margin-top: 18px;">
+              <li>Người dùng xem roadmap, đăng nhập, học, làm quiz và theo dõi tiến độ.</li>
+              <li>Admin quản lý user, skill, resource, career path và demo studio.</li>
+              <li>Backend có auth, validation, upload, notification và deployment config.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Next version</h3>
+            <ul style="margin-top: 14px;">
+              <li>AI gợi ý roadmap theo trình độ.</li>
+              <li>Certificate sau milestone.</li>
+              <li>Discussion realtime cho từng roadmap.</li>
+              <li>Analytics sâu hơn cho admin.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer"><span>Conclusion</span><span>16 / 17</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="kicker">16 · Thanks</div>
+        <div class="content hero-layout">
+          <div class="hero-copy">
+            <h1>Thank you</h1>
+            <p>Cảm ơn thầy cô và các bạn đã lắng nghe. Em xin sẵn sàng demo sản phẩm và trả lời câu hỏi.</p>
+            <div class="tag-row">
+              <span class="tag">CareerPath</span>
+              <span class="tag">Fullstack</span>
+              <span class="tag">Learning Roadmap</span>
+            </div>
+          </div>
+          <div class="hero-panel">
+            <div class="logo-mark">CP</div>
+            <div>
+              <div class="big-number">Q&A</div>
+              <h3>Câu hỏi?</h3>
+              <p>Phần tiếp theo: demo trực tiếp hoặc giải thích code theo yêu cầu.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span>Thanks</span><span>17 / 17</span></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="controls" aria-label="Điều khiển slide">
+    <button type="button" id="prev" aria-label="Slide trước">&lt;</button>
+    <button type="button" id="next" aria-label="Slide sau">&gt;</button>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const progressBar = document.querySelector('#progressBar');
+    const prevButton = document.querySelector('#prev');
+    const nextButton = document.querySelector('#next');
+    let index = 0;
+
+    function showSlide(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle('active', slideIndex === index);
+      });
+      progressBar.style.width = `${((index + 1) / slides.length) * 100}%`;
+      document.title = `CareerPath - Slide ${index + 1}/${slides.length}`;
+    }
+
+    function goNext() {
+      showSlide(index + 1);
+    }
+
+    function goPrev() {
+      showSlide(index - 1);
+    }
+
+    prevButton.addEventListener('click', goPrev);
+    nextButton.addEventListener('click', goNext);
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === ' ') {
+        event.preventDefault();
+        goNext();
+      }
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        goPrev();
+      }
+      if (event.key === 'Home') {
+        showSlide(0);
+      }
+      if (event.key === 'End') {
+        showSlide(slides.length - 1);
+      }
+    });
+
+    showSlide(0);
+  </script>
+</body>
+</html>
