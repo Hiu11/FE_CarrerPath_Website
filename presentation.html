@@ -6,17 +6,18 @@
   <title>CareerPath - Slide thuyết trình dự án</title>
   <style>
     :root {
-      --bg: #f7f3ea;
-      --ink: #1b1a17;
-      --muted: #686157;
-      --panel: #fffaf0;
-      --line: #1b1a17;
-      --primary: #e4562e;
-      --teal: #16857f;
-      --blue: #315c9b;
-      --green: #4d7f3c;
-      --yellow: #f1bd45;
-      --shadow: 7px 7px 0 #1b1a17;
+      --bg: #0a0a0a;
+      --ink: #f5f5f5;
+      --muted: #a3a3a3;
+      --card: #111111;
+      --soft: #1f1f1f;
+      --line: #404040;
+      --primary: #eab308;
+      --primary-dark: #facc15;
+      --yellow: #eab308;
+      --green: #22c55e;
+      --purple: #7c3aed;
+      --shadow: 6px 6px 0 #eab308;
     }
 
     * { box-sizing: border-box; }
@@ -26,34 +27,29 @@
       min-height: 100vh;
       color: var(--ink);
       background:
-        linear-gradient(90deg, rgba(27, 26, 23, 0.055) 1px, transparent 1px),
-        linear-gradient(rgba(27, 26, 23, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
         var(--bg);
-      background-size: 34px 34px;
+      background-size: 32px 32px;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       overflow: hidden;
     }
 
     .deck {
+      position: relative;
       width: 100vw;
       height: 100vh;
-      position: relative;
     }
 
     .slide {
       position: absolute;
       inset: 0;
       display: none;
-      padding: 34px 7vw 46px;
-      opacity: 0;
-      transform: translateX(20px);
-      transition: opacity 180ms ease, transform 180ms ease;
+      padding: 34px 6.5vw 46px;
     }
 
     .slide.active {
       display: grid;
-      opacity: 1;
-      transform: translateX(0);
     }
 
     .slide-inner {
@@ -63,6 +59,28 @@
       display: grid;
       grid-template-rows: auto minmax(0, 1fr) auto;
       gap: 18px;
+      position: relative;
+    }
+
+    .slide-brand {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--line);
+      background: #0a0a0a;
+      box-shadow: 4px 4px 0 var(--line);
+      padding: 7px;
+    }
+
+    .slide-brand img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
     }
 
     .content {
@@ -75,30 +93,30 @@
     h1, h2, h3, p { margin: 0; }
 
     h1 {
-      max-width: 920px;
-      font-size: clamp(46px, 6.5vw, 82px);
-      line-height: 0.92;
+      max-width: 940px;
+      font-size: clamp(44px, 6.2vw, 82px);
+      line-height: 0.94;
       letter-spacing: 0;
       text-transform: uppercase;
     }
 
     h2 {
       max-width: 980px;
-      font-size: clamp(34px, 4.5vw, 58px);
-      line-height: 0.98;
+      font-size: clamp(32px, 4.2vw, 56px);
+      line-height: 1;
       letter-spacing: 0;
       text-transform: uppercase;
     }
 
     h3 {
-      font-size: clamp(20px, 2vw, 29px);
-      line-height: 1.05;
+      font-size: clamp(19px, 1.85vw, 27px);
+      line-height: 1.08;
       letter-spacing: 0;
     }
 
     p, li {
-      font-size: clamp(16px, 1.35vw, 21px);
-      line-height: 1.34;
+      font-size: clamp(15px, 1.22vw, 20px);
+      line-height: 1.35;
       color: var(--muted);
     }
 
@@ -106,7 +124,7 @@
       display: grid;
       gap: 10px;
       margin: 0;
-      padding-left: 24px;
+      padding-left: 22px;
     }
 
     strong { color: var(--ink); }
@@ -114,7 +132,8 @@
     .kicker {
       width: fit-content;
       border: 2px solid var(--line);
-      background: #fff;
+      background: var(--card);
+      color: var(--ink);
       padding: 8px 12px;
       font-family: "JetBrains Mono", Consolas, monospace;
       font-size: 12px;
@@ -142,86 +161,66 @@
     .card,
     .metric,
     .step,
-    .image-frame {
+    .image-frame,
+    .arch-box,
+    .browser-mock {
       border: 2px solid var(--line);
-      background: #fff;
+      background: var(--card);
       box-shadow: 5px 5px 0 var(--line);
     }
 
     .panel,
     .hero-panel {
-      background: var(--panel);
-      padding: 22px;
+      padding: 20px;
       border-width: 3px;
       box-shadow: var(--shadow);
     }
 
     .hero-panel {
-      min-height: 390px;
+      min-height: 360px;
       display: grid;
-      gap: 16px;
       align-content: space-between;
+      gap: 16px;
       overflow: hidden;
       background:
-        linear-gradient(135deg, rgba(228, 86, 46, 0.16), transparent 34%),
-        linear-gradient(315deg, rgba(22, 133, 127, 0.16), transparent 40%),
-        #fffaf0;
+        linear-gradient(135deg, rgba(234, 179, 8, 0.18), transparent 34%),
+        linear-gradient(315deg, rgba(124, 58, 237, 0.2), transparent 38%),
+        var(--card);
     }
 
     .logo-mark {
-      width: 82px;
-      height: 82px;
+      width: 76px;
+      height: 76px;
       display: grid;
       place-items: center;
       border: 3px solid var(--line);
       background: var(--primary);
-      color: #fff;
+      color: #0a0a0a;
       box-shadow: 5px 5px 0 var(--line);
-      font-size: 34px;
+      font-size: 31px;
       font-weight: 950;
     }
 
     .big-number {
-      font-size: clamp(60px, 8vw, 112px);
+      font-size: clamp(56px, 7vw, 104px);
       line-height: 0.86;
       font-weight: 950;
       color: var(--primary);
       letter-spacing: 0;
     }
 
-    .grid-2,
-    .grid-3,
-    .grid-4,
-    .metrics,
-    .timeline,
-    .comparison,
-    .architecture,
-    .flow {
-      display: grid;
-      gap: 16px;
+    .qa-panel {
+      align-content: center;
     }
 
-    .grid-2, .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid-3, .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-
-    .card {
-      min-height: 128px;
-      display: grid;
-      align-content: start;
-      gap: 10px;
-      padding: 16px;
+    .qa-panel .big-number {
+      font-size: clamp(48px, 5.2vw, 78px);
+      line-height: 0.92;
+      margin-bottom: 14px;
     }
 
-    .card strong {
-      font-size: clamp(18px, 1.65vw, 25px);
-      line-height: 1.05;
-    }
-
-    .card p,
-    .step p,
-    .metric p {
-      font-size: clamp(14px, 1.05vw, 17px);
+    .qa-panel h3 {
+      margin-bottom: 8px;
     }
 
     .tag-row {
@@ -232,12 +231,307 @@
 
     .tag {
       border: 2px solid var(--line);
-      background: #fff;
+      background: var(--card);
       padding: 7px 10px;
       font-family: "JetBrains Mono", Consolas, monospace;
       font-size: 12px;
       font-weight: 900;
       white-space: nowrap;
+    }
+
+    .tag.primary {
+      background: var(--primary);
+      color: #0a0a0a;
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .flow,
+    .timeline,
+    .architecture,
+    .metrics,
+    .comparison {
+      display: grid;
+      gap: 15px;
+    }
+
+    .grid-2, .comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3, .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .flow { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .timeline { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+    .card {
+      min-height: 122px;
+      display: grid;
+      align-content: start;
+      gap: 9px;
+      padding: 15px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(234, 179, 8, 0.08), transparent 44%),
+        var(--card);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 6px;
+      background: var(--primary);
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .grid-2 .card:nth-child(2n),
+    .grid-3 .card:nth-child(2n),
+    .grid-4 .card:nth-child(2n),
+    .tech-grid .card:nth-child(2n) {
+      background:
+        linear-gradient(135deg, rgba(124, 58, 237, 0.16), transparent 46%),
+        var(--card);
+    }
+
+    .grid-2 .card:nth-child(2n)::before,
+    .grid-3 .card:nth-child(2n)::before,
+    .grid-4 .card:nth-child(2n)::before,
+    .tech-grid .card:nth-child(2n)::before {
+      background: var(--purple);
+    }
+
+    .grid-2 .card:nth-child(3n),
+    .grid-3 .card:nth-child(3n),
+    .grid-4 .card:nth-child(3n),
+    .tech-grid .card:nth-child(3n) {
+      background:
+        linear-gradient(135deg, rgba(34, 197, 94, 0.13), transparent 46%),
+        var(--card);
+    }
+
+    .grid-2 .card:nth-child(3n)::before,
+    .grid-3 .card:nth-child(3n)::before,
+    .grid-4 .card:nth-child(3n)::before,
+    .tech-grid .card:nth-child(3n)::before {
+      background: var(--green);
+    }
+
+    .grid-4 .card:nth-child(4n),
+    .tech-grid .card:nth-child(4n) {
+      background:
+        linear-gradient(135deg, rgba(59, 130, 246, 0.14), transparent 46%),
+        var(--card);
+    }
+
+    .grid-4 .card:nth-child(4n)::before,
+    .tech-grid .card:nth-child(4n)::before {
+      background: #3b82f6;
+    }
+
+    .grid-4 .card:nth-child(5n),
+    .tech-grid .card:nth-child(5n) {
+      background:
+        linear-gradient(135deg, rgba(244, 63, 94, 0.13), transparent 46%),
+        var(--card);
+    }
+
+    .grid-4 .card:nth-child(5n)::before,
+    .tech-grid .card:nth-child(5n)::before {
+      background: #f43f5e;
+    }
+
+    .grid-2 .card:nth-child(1),
+    .grid-3 .card:nth-child(1),
+    .grid-4 .card:nth-child(1),
+    .tech-grid .card:nth-child(1) {
+      background: linear-gradient(135deg, rgba(234, 179, 8, 0.12), transparent 46%), var(--card);
+    }
+
+    .grid-2 .card:nth-child(1)::before,
+    .grid-3 .card:nth-child(1)::before,
+    .grid-4 .card:nth-child(1)::before,
+    .tech-grid .card:nth-child(1)::before {
+      background: #eab308;
+    }
+
+    .grid-2 .card:nth-child(2),
+    .grid-3 .card:nth-child(2),
+    .grid-4 .card:nth-child(2),
+    .tech-grid .card:nth-child(2) {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.18), transparent 46%), var(--card);
+    }
+
+    .grid-2 .card:nth-child(2)::before,
+    .grid-3 .card:nth-child(2)::before,
+    .grid-4 .card:nth-child(2)::before,
+    .tech-grid .card:nth-child(2)::before {
+      background: #7c3aed;
+    }
+
+    .grid-2 .card:nth-child(3),
+    .grid-3 .card:nth-child(3),
+    .grid-4 .card:nth-child(3),
+    .tech-grid .card:nth-child(3) {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), transparent 46%), var(--card);
+    }
+
+    .grid-2 .card:nth-child(3)::before,
+    .grid-3 .card:nth-child(3)::before,
+    .grid-4 .card:nth-child(3)::before,
+    .tech-grid .card:nth-child(3)::before {
+      background: #22c55e;
+    }
+
+    .grid-2 .card:nth-child(4),
+    .grid-3 .card:nth-child(4),
+    .grid-4 .card:nth-child(4),
+    .tech-grid .card:nth-child(4) {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.16), transparent 46%), var(--card);
+    }
+
+    .grid-2 .card:nth-child(4)::before,
+    .grid-3 .card:nth-child(4)::before,
+    .grid-4 .card:nth-child(4)::before,
+    .tech-grid .card:nth-child(4)::before {
+      background: #3b82f6;
+    }
+
+    .grid-2 .card:nth-child(5),
+    .grid-3 .card:nth-child(5),
+    .grid-4 .card:nth-child(5),
+    .tech-grid .card:nth-child(5) {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), transparent 46%), var(--card);
+    }
+
+    .grid-2 .card:nth-child(5)::before,
+    .grid-3 .card:nth-child(5)::before,
+    .grid-4 .card:nth-child(5)::before,
+    .tech-grid .card:nth-child(5)::before {
+      background: #f43f5e;
+    }
+
+    .grid-2 .card:nth-child(6),
+    .grid-3 .card:nth-child(6),
+    .grid-4 .card:nth-child(6),
+    .tech-grid .card:nth-child(6) {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), transparent 46%), var(--card);
+    }
+
+    .grid-2 .card:nth-child(6)::before,
+    .grid-3 .card:nth-child(6)::before,
+    .grid-4 .card:nth-child(6)::before,
+    .tech-grid .card:nth-child(6)::before {
+      background: #06b6d4;
+    }
+
+    .grid-2 .card:nth-child(7),
+    .grid-3 .card:nth-child(7),
+    .grid-4 .card:nth-child(7),
+    .tech-grid .card:nth-child(7) {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), transparent 46%), var(--card);
+    }
+
+    .grid-2 .card:nth-child(7)::before,
+    .grid-3 .card:nth-child(7)::before,
+    .grid-4 .card:nth-child(7)::before,
+    .tech-grid .card:nth-child(7)::before {
+      background: #f97316;
+    }
+
+    .grid-2 .card:nth-child(8),
+    .grid-3 .card:nth-child(8),
+    .grid-4 .card:nth-child(8),
+    .tech-grid .card:nth-child(8) {
+      background: linear-gradient(135deg, rgba(217, 70, 239, 0.15), transparent 46%), var(--card);
+    }
+
+    .grid-2 .card:nth-child(8)::before,
+    .grid-3 .card:nth-child(8)::before,
+    .grid-4 .card:nth-child(8)::before,
+    .tech-grid .card:nth-child(8)::before {
+      background: #d946ef;
+    }
+
+    .card strong {
+      font-size: clamp(17px, 1.48vw, 23px);
+      line-height: 1.08;
+    }
+
+    .card p,
+    .step p,
+    .metric p,
+    .arch-box p {
+      font-size: clamp(13px, 1vw, 16px);
+    }
+
+    .step {
+      min-height: 148px;
+      display: grid;
+      gap: 11px;
+      align-content: start;
+      padding: 15px;
+    }
+
+    .dot {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--line);
+      background: var(--primary);
+      color: #0a0a0a;
+      font-size: 16px;
+      font-weight: 950;
+    }
+
+    .flow .step:nth-child(2) .dot,
+    .timeline .step:nth-child(2) .dot {
+      background: var(--purple);
+      color: #fff;
+    }
+
+    .flow .step:nth-child(3) .dot,
+    .timeline .step:nth-child(3) .dot {
+      background: var(--green);
+      color: #0a0a0a;
+    }
+
+    .flow .step:nth-child(4) .dot,
+    .timeline .step:nth-child(4) .dot {
+      background: #3b82f6;
+      color: #fff;
+    }
+
+    .flow .step,
+    .timeline .step {
+      background:
+        linear-gradient(135deg, rgba(234, 179, 8, 0.09), transparent 48%),
+        var(--card);
+    }
+
+    .flow .step:nth-child(2),
+    .timeline .step:nth-child(2) {
+      background:
+        linear-gradient(135deg, rgba(124, 58, 237, 0.16), transparent 48%),
+        var(--card);
+    }
+
+    .flow .step:nth-child(3),
+    .timeline .step:nth-child(3) {
+      background:
+        linear-gradient(135deg, rgba(34, 197, 94, 0.13), transparent 48%),
+        var(--card);
+    }
+
+    .flow .step:nth-child(4),
+    .timeline .step:nth-child(4) {
+      background:
+        linear-gradient(135deg, rgba(59, 130, 246, 0.14), transparent 48%),
+        var(--card);
     }
 
     .image-frame {
@@ -255,33 +549,146 @@
     }
 
     .image-frame.logo {
-      background: #1b1a17;
+      background: #0a0a0a;
       display: grid;
       place-items: center;
-      padding: 28px;
+      padding: 34px;
     }
 
     .image-frame.logo img {
-      width: min(360px, 86%);
+      width: min(260px, 70%);
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.32));
+      filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.35));
     }
 
-    .mock-app {
+    .brand-lockup {
+      min-height: 360px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 22px;
+      text-align: center;
+    }
+
+    .brand-lockup h3 {
+      font-size: clamp(26px, 3vw, 42px);
+      text-transform: uppercase;
+    }
+
+    .brand-lockup p {
+      max-width: 440px;
+    }
+
+    .browser-mock {
       min-height: 330px;
-      border: 3px solid var(--line);
-      background: #101010;
+      overflow: hidden;
+      background: #0a0a0a;
       color: #fff;
+      padding: 16px;
+    }
+
+    .product-showcase {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .app-shot {
+      min-height: 430px;
+      border: 3px solid var(--line);
+      background: var(--card);
       box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .app-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 2px solid var(--line);
+      padding: 13px 16px;
+      background: var(--soft);
+      color: var(--ink);
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .app-window {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      min-height: 0;
+    }
+
+    .app-sidebar {
+      display: grid;
+      align-content: start;
+      gap: 10px;
+      border-right: 2px solid var(--line);
+      padding: 16px;
+      background: #0a0a0a;
+      color: #fff;
+    }
+
+    .app-sidebar span {
+      height: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .app-main {
+      display: grid;
+      gap: 14px;
+      align-content: start;
       padding: 18px;
+    }
+
+    .app-hero {
+      border: 2px solid var(--line);
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.16), rgba(234, 179, 8, 0.12));
+      padding: 18px;
+    }
+
+    .app-hero h3 {
+      max-width: 420px;
+      margin-bottom: 8px;
+    }
+
+    .app-roadmap {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .app-roadmap-card {
+      min-height: 96px;
+      border: 2px solid var(--line);
+      background: var(--card);
+      padding: 12px;
+      box-shadow: 3px 3px 0 var(--line);
+    }
+
+    .app-roadmap-card b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .app-roadmap-card p {
+      font-size: 12px;
     }
 
     .browser-bar {
       display: flex;
       gap: 8px;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.22);
-      padding-bottom: 14px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 13px;
     }
 
     .browser-bar span {
@@ -292,43 +699,44 @@
     }
 
     .browser-bar span:nth-child(2) { background: var(--yellow); }
-    .browser-bar span:nth-child(3) { background: #56b37f; }
+    .browser-bar span:nth-child(3) { background: var(--green); }
 
-    .mock-grid {
+    .mock-layout {
       display: grid;
       grid-template-columns: 150px 1fr;
-      gap: 16px;
-      padding-top: 20px;
+      gap: 14px;
+      padding-top: 18px;
     }
 
     .mock-side,
     .mock-main {
       display: grid;
-      gap: 11px;
+      gap: 10px;
     }
 
     .mock-line {
-      height: 16px;
-      background: rgba(255, 255, 255, 0.18);
+      height: 15px;
+      background: rgba(255, 255, 255, 0.17);
       border-radius: 2px;
     }
 
     .mock-node {
       display: grid;
-      grid-template-columns: 42px 1fr;
-      gap: 12px;
+      grid-template-columns: 40px 1fr;
+      gap: 11px;
       align-items: center;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      padding: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.28);
+      padding: 11px;
       background: rgba(255, 255, 255, 0.08);
     }
 
     .mock-node span {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       display: grid;
       place-items: center;
       background: var(--primary);
+      color: #0a0a0a;
       font-weight: 900;
     }
 
@@ -337,69 +745,67 @@
       color: #fff;
     }
 
-    .metric {
-      padding: 18px;
-      min-height: 135px;
-    }
-
-    .metric b {
-      display: block;
-      font-size: clamp(38px, 4.5vw, 66px);
-      line-height: 0.9;
-      color: var(--primary);
-    }
-
-    .timeline {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      align-items: stretch;
-    }
-
-    .step {
-      min-height: 160px;
-      display: grid;
-      gap: 12px;
-      align-content: start;
-      padding: 16px;
-    }
-
-    .dot {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border: 2px solid var(--line);
-      background: var(--primary);
-      color: #fff;
-      font-size: 17px;
-      font-weight: 950;
-    }
-
     .architecture {
-      grid-template-columns: 1fr auto 1fr auto 1fr;
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
       align-items: center;
     }
 
     .arch-box {
-      min-height: 205px;
+      min-height: 180px;
       display: grid;
-      gap: 12px;
+      gap: 10px;
       align-content: center;
       text-align: center;
-      border: 3px solid var(--line);
-      background: #fff;
-      padding: 20px;
-      box-shadow: 5px 5px 0 var(--line);
+      padding: 16px;
+    }
+
+    .arch-box.ai {
+      background: var(--primary);
+      color: #0a0a0a;
+    }
+
+    .arch-box.ai p,
+    .arch-box.ai h3 {
+      color: #0a0a0a;
     }
 
     .arrow {
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 950;
       color: var(--primary);
     }
 
-    .flow {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      align-items: stretch;
+    .metric {
+      min-height: 130px;
+      padding: 16px;
+    }
+
+    .metric b {
+      display: block;
+      font-size: clamp(34px, 4.2vw, 60px);
+      line-height: 0.9;
+      color: var(--primary);
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .tech-grid .card {
+      min-height: 138px;
+      align-content: start;
+    }
+
+    .tech-grid .card strong {
+      color: var(--primary);
+      font-size: clamp(20px, 1.9vw, 28px);
+    }
+
+    .tech-grid .card p {
+      font-size: clamp(14px, 1.1vw, 17px);
+      line-height: 1.38;
     }
 
     .footer {
@@ -425,17 +831,12 @@
       width: 42px;
       height: 38px;
       border: 2px solid var(--line);
-      background: #fff;
-      color: var(--ink);
+      background: var(--primary);
+      color: #0a0a0a;
       font-size: 20px;
       font-weight: 900;
       box-shadow: 3px 3px 0 var(--line);
       cursor: pointer;
-    }
-
-    button:active {
-      transform: translate(2px, 2px);
-      box-shadow: 1px 1px 0 var(--line);
     }
 
     .progress {
@@ -445,7 +846,7 @@
       z-index: 30;
       width: 100%;
       height: 6px;
-      background: rgba(27, 26, 23, 0.14);
+      background: rgba(255, 255, 255, 0.16);
     }
 
     .progress span {
@@ -457,8 +858,8 @@
     }
 
     .accent-primary { color: var(--primary); }
-    .accent-teal { color: var(--teal); }
-    .accent-blue { color: var(--blue); }
+    .accent-blue { color: var(--primary-dark); }
+    .accent-green { color: var(--green); }
 
     @media (max-width: 900px) {
       body { overflow: auto; }
@@ -477,30 +878,21 @@
       .grid-2,
       .grid-3,
       .grid-4,
-      .metrics,
-      .timeline,
-      .comparison,
-      .architecture,
       .flow,
-      .mock-grid {
+      .timeline,
+      .architecture,
+      .metrics,
+      .tech-grid,
+      .comparison,
+      .product-showcase,
+      .app-window,
+      .app-roadmap,
+      .mock-layout {
         display: grid;
         grid-template-columns: 1fr;
       }
       .arrow { display: none; }
-      .hero-panel, .mock-app, .image-frame { min-height: 280px; }
-    }
-
-    @media print {
-      body { overflow: visible; background: #fff; }
-      .slide {
-        position: static;
-        display: block;
-        opacity: 1;
-        transform: none;
-        height: 100vh;
-        break-after: page;
-      }
-      .controls, .progress { display: none; }
+      .hero-panel, .browser-mock, .image-frame { min-height: 280px; }
     }
   </style>
 </head>
@@ -514,15 +906,19 @@
             <h1>CareerPath Learning Platform</h1>
             <p>Nền tảng định hướng lộ trình học nghề công nghệ, giúp người học biết nên học gì, học theo thứ tự nào và đo tiến độ ra sao.</p>
             <div class="tag-row">
-              <span class="tag">React</span>
+              <span class="tag primary">React</span>
               <span class="tag">TypeScript</span>
               <span class="tag">Express</span>
               <span class="tag">MongoDB</span>
-              <span class="tag">Admin CMS</span>
+              <span class="tag">Gemini API</span>
             </div>
           </div>
-          <div class="image-frame logo">
-            <img src="public/roadmap-logo-light.png" alt="CareerPath logo" />
+          <div class="image-frame logo brand-lockup">
+            <img src="src/assets/brand/roadmap-logo-dark.png" alt="CareerPath logo dark" />
+            <div>
+              <h3>CareerPath</h3>
+              <p>Roadmap học tập · Quiz · Dashboard · AI cá nhân hóa</p>
+            </div>
           </div>
         </div>
         <div class="footer"><span>Dự án cuối khóa</span><span>Phím ← / → để chuyển slide</span></div>
@@ -535,7 +931,7 @@
         <div class="content two-column">
           <div>
             <h2>CareerPath là bản đồ học tập cho người muốn vào ngành IT</h2>
-            <p style="margin-top: 18px;">Dự án trả lời một câu hỏi rất thực tế: nếu một bạn mới bắt đầu học công nghệ, bạn ấy nên đi theo lộ trình nào để không bị lạc hướng?</p>
+            <p style="margin-top: 18px;">Dự án trả lời câu hỏi thực tế: nếu một bạn mới bắt đầu học công nghệ, bạn ấy nên đi theo lộ trình nào để không bị lạc hướng?</p>
           </div>
           <div class="grid-2">
             <div class="card"><strong>Chọn nghề</strong><p>Frontend, Backend, Fullstack, Data, UI/UX, QA, Product, Mobile, AI/ML.</p></div>
@@ -544,7 +940,7 @@
             <div class="card"><strong>Admin quản trị</strong><p>Admin quản lý user, skill, resource, roadmap và career path.</p></div>
           </div>
         </div>
-        <div class="footer"><span>Project Introduction</span><span>2 / 17</span></div>
+        <div class="footer"><span>Project Introduction</span><span>2 / 16</span></div>
       </div>
     </section>
 
@@ -572,7 +968,7 @@
             </div>
           </div>
         </div>
-        <div class="footer"><span>Context</span><span>3 / 17</span></div>
+        <div class="footer"><span>Context</span><span>3 / 16</span></div>
       </div>
     </section>
 
@@ -591,23 +987,23 @@
             <div class="card"><strong>Không rõ đầu ra</strong><p>Mỗi lộ trình gắn với outcome và portfolio outcome.</p></div>
           </div>
         </div>
-        <div class="footer"><span>Problem Statement</span><span>4 / 17</span></div>
+        <div class="footer"><span>Problem Statement</span><span>4 / 16</span></div>
       </div>
     </section>
 
     <section class="slide">
       <div class="slide-inner">
-        <div class="kicker">04 · Dự án giải quyết gì?</div>
+        <div class="kicker">04 · Quy trình AI</div>
         <div class="content">
-          <h2>CareerPath biến việc học lan man thành quy trình học có mục tiêu</h2>
+          <h2>Quy trình được cá nhân hóa bởi AI</h2>
           <div class="flow">
-            <div class="step"><div class="dot">1</div><h3>Chọn mục tiêu</h3><p>Người học chọn hướng nghề phù hợp với mong muốn.</p></div>
-            <div class="step"><div class="dot">2</div><h3>Học từng bước</h3><p>Roadmap chia nhỏ kiến thức theo node và subtopic.</p></div>
-            <div class="step"><div class="dot">3</div><h3>Kiểm tra</h3><p>Quiz giúp xác nhận mức độ hiểu từng kỹ năng.</p></div>
+            <div class="step"><div class="dot">1</div><h3>Chọn mục tiêu</h3><p>Người học chọn hướng nghề phù hợp với mục tiêu cá nhân.</p></div>
+            <div class="step"><div class="dot">2</div><h3>AI gợi ý</h3><p>Gemini API hỗ trợ cá nhân hóa lộ trình theo profile và tiến độ.</p></div>
+            <div class="step"><div class="dot">3</div><h3>Học & kiểm tra</h3><p>Roadmap, resource và quiz tạo checkpoint sau từng kỹ năng.</p></div>
             <div class="step"><div class="dot">4</div><h3>Theo dõi</h3><p>Dashboard và profile lưu tiến độ học tập cá nhân.</p></div>
           </div>
         </div>
-        <div class="footer"><span>Solution Fit</span><span>5 / 17</span></div>
+        <div class="footer"><span>Personalized Flow</span><span>5 / 16</span></div>
       </div>
     </section>
 
@@ -625,7 +1021,7 @@
             <p><strong class="accent-primary">Insight:</strong> người học không chỉ cần nội dung. Họ cần biết “đang ở đâu”, “nên đi đâu” và “đã đủ năng lực chưa”.</p>
           </div>
         </div>
-        <div class="footer"><span>Target Users</span><span>6 / 17</span></div>
+        <div class="footer"><span>Target Users</span><span>6 / 16</span></div>
       </div>
     </section>
 
@@ -634,8 +1030,8 @@
         <div class="kicker">06 · Giá trị mang lại</div>
         <div class="content two-column">
           <div>
-            <h2>Giá trị không nằm ở việc liệt kê thật nhiều link</h2>
-            <p style="margin-top: 18px;">Điểm quan trọng là tạo một quy trình học có mục tiêu, có checkpoint, có tiến độ và có kết quả cụ thể để demo.</p>
+            <h2>Giá trị nằm ở quy trình học có mục tiêu</h2>
+            <p style="margin-top: 18px;">CareerPath không chỉ gom link học. Dự án tạo một hệ thống có mục tiêu, checkpoint, tiến độ và kết quả cụ thể để demo.</p>
           </div>
           <div class="grid-2">
             <div class="card"><strong>Giảm rối thông tin</strong><p>Tài nguyên được đặt đúng bước học và đúng kỹ năng.</p></div>
@@ -644,7 +1040,7 @@
             <div class="card"><strong>Hướng đến portfolio</strong><p>Mỗi career path có outcome để tạo sản phẩm demo.</p></div>
           </div>
         </div>
-        <div class="footer"><span>Value Proposition</span><span>7 / 17</span></div>
+        <div class="footer"><span>Value Proposition</span><span>7 / 16</span></div>
       </div>
     </section>
 
@@ -661,26 +1057,56 @@
             <div class="card"><strong>Dashboard</strong><p>Màn hình tổng hợp tiến độ và hoạt động học tập.</p></div>
             <div class="card"><strong>Profile</strong><p>Avatar, CV, portfolio, reminder và thông tin cá nhân.</p></div>
             <div class="card"><strong>Admin</strong><p>Quản lý user, skill, resource, roadmap, career path.</p></div>
-            <div class="card"><strong>Notification</strong><p>Nhắc học và hỗ trợ duy trì thói quen học tập.</p></div>
+            <div class="card"><strong>AI Suggestion</strong><p>Dùng Gemini API để hỗ trợ cá nhân hóa lộ trình học.</p></div>
           </div>
         </div>
-        <div class="footer"><span>Feature Set</span><span>8 / 17</span></div>
+        <div class="footer"><span>Feature Set</span><span>8 / 16</span></div>
       </div>
     </section>
 
     <section class="slide">
       <div class="slide-inner">
-        <div class="kicker">08 · Ảnh minh họa sản phẩm</div>
-        <div class="content hero-layout">
-          <div>
-            <h2>Giao diện hướng đến trải nghiệm học tập rõ ràng</h2>
-            <p style="margin-top: 18px;">Trang chủ, roadmap, dashboard và profile được thiết kế để người học nhìn nhanh được mục tiêu, trạng thái và bước tiếp theo.</p>
+        <div class="kicker">08 · Hình ảnh sản phẩm</div>
+        <div class="content product-showcase">
+          <div class="app-shot" aria-label="Mockup giao diện CareerPath">
+            <div class="app-topbar">
+              <span>CareerPath</span>
+              <span>Dashboard · Roadmap · Quiz</span>
+            </div>
+            <div class="app-window">
+              <div class="app-sidebar">
+                <span style="width: 82%;"></span>
+                <span style="width: 64%;"></span>
+                <span style="width: 92%;"></span>
+                <span style="width: 70%;"></span>
+                <span style="width: 78%;"></span>
+              </div>
+              <div class="app-main">
+                <div class="app-hero">
+                  <h3>Step-by-step paths to Developer Mastery</h3>
+                  <p>Chọn hướng nghề, theo dõi tiến độ, làm quiz và hoàn thiện portfolio.</p>
+                </div>
+                <div class="app-roadmap">
+                  <div class="app-roadmap-card"><b>Frontend</b><p>HTML · CSS · React · API</p></div>
+                  <div class="app-roadmap-card"><b>Backend</b><p>Node.js · Express · MongoDB</p></div>
+                  <div class="app-roadmap-card"><b>AI/ML</b><p>Python · Gemini API · Demo</p></div>
+                </div>
+                <div class="app-roadmap">
+                  <div class="app-roadmap-card"><b>Progress</b><p>68% roadmap completed</p></div>
+                  <div class="app-roadmap-card"><b>Quiz</b><p>Average score: 82%</p></div>
+                  <div class="app-roadmap-card"><b>Profile</b><p>CV · Portfolio · Reminder</p></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="image-frame">
-            <img src="src/assets/hero.png" alt="Ảnh minh họa CareerPath" />
+          <div class="grid-2">
+            <div class="card"><strong>Home</strong><p>Giới thiệu career path và điều hướng vào roadmap.</p></div>
+            <div class="card"><strong>Roadmap Detail</strong><p>Hiển thị step, subtopic, resource và quiz theo kỹ năng.</p></div>
+            <div class="card"><strong>Dashboard</strong><p>Theo dõi progress, skill gap, quiz insight và evidence.</p></div>
+            <div class="card"><strong>Admin</strong><p>Quản lý nội dung học tập và dữ liệu demo cho hệ thống.</p></div>
           </div>
         </div>
-        <div class="footer"><span>Product Visual</span><span>9 / 17</span></div>
+        <div class="footer"><span>Product Visuals</span><span>9 / 16</span></div>
       </div>
     </section>
 
@@ -703,12 +1129,12 @@
               <ul>
                 <li>Chọn mục tiêu nghề nghiệp trước.</li>
                 <li>Học theo node và subtopic có thứ tự.</li>
-                <li>Có quiz, progress và lịch sử học.</li>
+                <li>Có quiz, progress, AI suggestion và lịch sử học.</li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="footer"><span>Differentiation</span><span>10 / 17</span></div>
+        <div class="footer"><span>Differentiation</span><span>10 / 16</span></div>
       </div>
     </section>
 
@@ -722,13 +1148,13 @@
               <li>Mở Home để giới thiệu các career path.</li>
               <li>Chọn Frontend hoặc Fullstack và xem roadmap detail.</li>
               <li>Đăng nhập để mở dashboard, profile và quiz.</li>
-              <li>Làm quiz một skill, sau đó xem quiz history.</li>
+              <li>Demo AI gợi ý lộ trình học theo mục tiêu.</li>
               <li>Vào Admin để cho thấy khả năng quản trị nội dung.</li>
             </ul>
           </div>
-          <div class="mock-app">
+          <div class="browser-mock">
             <div class="browser-bar"><span></span><span></span><span></span></div>
-            <div class="mock-grid">
+            <div class="mock-layout">
               <div class="mock-side">
                 <div class="mock-line" style="width: 92%;"></div>
                 <div class="mock-line" style="width: 72%;"></div>
@@ -737,13 +1163,13 @@
               </div>
               <div class="mock-main">
                 <div class="mock-node"><span>01</span><div><h3>Choose Career</h3><p>Frontend · Backend · AI/ML · UI/UX</p></div></div>
-                <div class="mock-node"><span>02</span><div><h3>Follow Roadmap</h3><p>Steps · Skills · Resources · Outcome</p></div></div>
+                <div class="mock-node"><span>02</span><div><h3>AI Personalizes</h3><p>Gemini API · goals · profile · progress</p></div></div>
                 <div class="mock-node"><span>03</span><div><h3>Track Progress</h3><p>Dashboard · Quiz · Profile · Reminder</p></div></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="footer"><span>Demo Script</span><span>11 / 17</span></div>
+        <div class="footer"><span>Demo Script</span><span>11 / 16</span></div>
       </div>
     </section>
 
@@ -753,116 +1179,100 @@
         <div class="content hero-layout">
           <div>
             <h2>Sau demo tính năng, chuyển sang cách hệ thống được xây dựng</h2>
-            <p style="margin-top: 18px;">Đây là slide bridge để nói: “Phần vừa rồi là trải nghiệm người dùng. Tiếp theo em sẽ trình bày cách em xây dựng dự án ở góc độ kỹ thuật.”</p>
+            <p style="margin-top: 18px;">Slide này dùng để nói: “Phần vừa rồi là trải nghiệm người dùng. Tiếp theo em sẽ trình bày cách em xây dựng dự án ở góc độ kỹ thuật.”</p>
           </div>
           <div class="panel">
             <h3>Dev talking points</h3>
             <ul style="margin-top: 14px;">
               <li>Cấu trúc FE theo module.</li>
               <li>BE tách route, controller, service, model.</li>
-              <li>Auth, validation, upload, notification.</li>
+              <li>Gemini API cá nhân hóa lộ trình học.</li>
               <li>MongoDB model cho dữ liệu học tập.</li>
             </ul>
           </div>
         </div>
-        <div class="footer"><span>Demo To Dev</span><span>12 / 17</span></div>
+        <div class="footer"><span>Demo To Dev</span><span>12 / 16</span></div>
       </div>
     </section>
 
     <section class="slide">
       <div class="slide-inner">
-        <div class="kicker">12 · Kiến trúc hệ thống</div>
+        <div class="kicker">12 · Kiến trúc & AI API</div>
         <div class="content">
-          <h2>Fullstack tách rõ Frontend, API và Database</h2>
+          <h2>Fullstack kết hợp Gemini API để cá nhân hóa lộ trình học</h2>
           <div class="architecture">
-            <div class="arch-box"><h3>Frontend</h3><p>React, Vite, TypeScript, routing theo module, UI component tái sử dụng.</p></div>
+            <div class="arch-box"><h3>Frontend</h3><p>React, Vite, TypeScript, route theo module.</p></div>
             <div class="arrow">→</div>
-            <div class="arch-box"><h3>Backend API</h3><p>Express, middleware, controller, service, validator và auth flow.</p></div>
+            <div class="arch-box"><h3>Backend API</h3><p>Express, middleware, controller, service, validator.</p></div>
             <div class="arrow">→</div>
-            <div class="arch-box"><h3>MongoDB</h3><p>Lưu user, roadmap, skill, resource, progress, quiz history và notification.</p></div>
+            <div class="arch-box ai"><h3>Gemini API</h3><p>Gợi ý roadmap theo mục tiêu, profile và tiến độ.</p></div>
+            <div class="arrow">→</div>
+            <div class="arch-box"><h3>MongoDB</h3><p>Lưu user, roadmap, skill, resource, progress, quiz history.</p></div>
           </div>
         </div>
-        <div class="footer"><span>Architecture</span><span>13 / 17</span></div>
+        <div class="footer"><span>Architecture + AI</span><span>13 / 16</span></div>
       </div>
     </section>
 
     <section class="slide">
       <div class="slide-inner">
-        <div class="kicker">13 · Backend & Security</div>
-        <div class="content two-column">
-          <div>
-            <h2>API được thiết kế theo tầng để dễ bảo trì</h2>
-            <p style="margin-top: 18px;">Backend có route, controller, service, model và validator riêng. Cách chia này giúp dự án dễ đọc, dễ sửa và dễ mở rộng thêm tính năng.</p>
-          </div>
-          <div class="grid-2">
-            <div class="card"><strong>JWT + bcrypt</strong><p>Xác thực người dùng, bảo vệ route riêng tư và phân quyền admin.</p></div>
-            <div class="card"><strong>Zod Validator</strong><p>Kiểm tra dữ liệu đầu vào trước khi xử lý business logic.</p></div>
-            <div class="card"><strong>CORS + Rate limit</strong><p>Giới hạn origin hợp lệ và giảm rủi ro request bất thường.</p></div>
-            <div class="card"><strong>Cloudinary + Email</strong><p>Hỗ trợ upload file, avatar, CV, OTP và reminder học tập.</p></div>
-          </div>
-        </div>
-        <div class="footer"><span>Backend Detail</span><span>14 / 17</span></div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <div class="slide-inner">
-        <div class="kicker">14 · Tech stack</div>
+        <div class="kicker">13 · Tech stack & kết quả</div>
         <div class="content">
-          <h2>Công nghệ phù hợp một sản phẩm web fullstack hiện đại</h2>
-          <div class="grid-3">
-            <div class="card"><strong class="accent-blue">Frontend</strong><p>React 19, TypeScript, Vite, React Router, Axios, Tailwind CSS, Radix UI, lucide-react.</p></div>
-            <div class="card"><strong class="accent-teal">Backend</strong><p>Node.js, Express 5, TypeScript, Mongoose, JWT, bcryptjs, Zod, Multer.</p></div>
-            <div class="card"><strong class="accent-primary">Services</strong><p>MongoDB, Cloudinary, Nodemailer, Web Push, node-cron, Vercel config.</p></div>
-          </div>
-          <div class="panel">
-            <p><strong>Điểm cộng kỹ thuật:</strong> dự án có cấu trúc FE/BE tách biệt, protected route, admin route, middleware xác thực, seed data và build script riêng.</p>
+          <h2>Công nghệ và kết quả kỹ thuật đạt được</h2>
+          <div class="tech-grid">
+            <div class="card"><strong>Frontend</strong><p>React 19, TypeScript, Vite, React Router, Axios, Tailwind CSS, Radix UI.</p></div>
+            <div class="card"><strong>Backend</strong><p>Node.js, Express 5, TypeScript, Mongoose, JWT, bcryptjs, Zod, Multer.</p></div>
+            <div class="card"><strong>Services</strong><p>MongoDB, Cloudinary, Nodemailer, Web Push, node-cron, Gemini API.</p></div>
+            <div class="card"><strong>FE/BE Structure</strong><p>Tách riêng frontend, backend, route, service, model và validator.</p></div>
+            <div class="card"><strong>Security</strong><p>Có protected route, admin route, JWT, hash password và validation.</p></div>
+            <div class="card"><strong>Demo Flow</strong><p>Roadmap, quiz, dashboard, profile, admin và AI cá nhân hóa.</p></div>
           </div>
         </div>
-        <div class="footer"><span>Technology Stack</span><span>15 / 17</span></div>
+        <div class="footer"><span>Technical Result</span><span>14 / 16</span></div>
       </div>
     </section>
 
     <section class="slide">
       <div class="slide-inner">
-        <div class="kicker">15 · Kết quả & hướng phát triển</div>
+        <div class="kicker">14 · Hướng phát triển</div>
         <div class="content hero-layout">
           <div>
-            <h2>Kết quả: một sản phẩm fullstack có thể demo end-to-end</h2>
+            <h2>Next version tập trung vào cá nhân hóa sâu hơn</h2>
             <ul style="margin-top: 18px;">
-              <li>Người dùng xem roadmap, đăng nhập, học, làm quiz và theo dõi tiến độ.</li>
-              <li>Admin quản lý user, skill, resource, career path và demo studio.</li>
-              <li>Backend có auth, validation, upload, notification và deployment config.</li>
+              <li>AI gợi ý roadmap theo trình độ, mục tiêu và thời gian học.</li>
+              <li>Certificate sau milestone hoặc sau khi pass quiz.</li>
+              <li>Discussion realtime cho từng roadmap.</li>
+              <li>Analytics sâu hơn cho admin và mentor.</li>
             </ul>
           </div>
-          <div class="panel">
-            <h3>Next version</h3>
-            <ul style="margin-top: 14px;">
-              <li>AI gợi ý roadmap theo trình độ.</li>
-              <li>Certificate sau milestone.</li>
-              <li>Discussion realtime cho từng roadmap.</li>
-              <li>Analytics sâu hơn cho admin.</li>
-            </ul>
+          <div class="hero-panel">
+            <div class="logo-mark">AI</div>
+            <div>
+              <div class="big-number">V2</div>
+              <h3>Personalized learning</h3>
+              <p>Biến CareerPath từ roadmap tĩnh thành trợ lý định hướng học tập thông minh.</p>
+            </div>
           </div>
         </div>
-        <div class="footer"><span>Conclusion</span><span>16 / 17</span></div>
+        <div class="footer"><span>Next Step</span><span>15 / 16</span></div>
       </div>
     </section>
 
     <section class="slide">
       <div class="slide-inner">
-        <div class="kicker">16 · Thanks</div>
+        <div class="kicker">15 · Thanks</div>
         <div class="content hero-layout">
           <div class="hero-copy">
             <h1>Thank you</h1>
             <p>Cảm ơn thầy cô và các bạn đã lắng nghe. Em xin sẵn sàng demo sản phẩm và trả lời câu hỏi.</p>
             <div class="tag-row">
-              <span class="tag">CareerPath</span>
+              <span class="tag primary">CareerPath</span>
               <span class="tag">Fullstack</span>
               <span class="tag">Learning Roadmap</span>
+              <span class="tag">Gemini API</span>
             </div>
           </div>
-          <div class="hero-panel">
+          <div class="hero-panel qa-panel">
             <div class="logo-mark">CP</div>
             <div>
               <div class="big-number">Q&A</div>
@@ -871,7 +1281,7 @@
             </div>
           </div>
         </div>
-        <div class="footer"><span>Thanks</span><span>17 / 17</span></div>
+        <div class="footer"><span>Thanks</span><span>16 / 16</span></div>
       </div>
     </section>
   </main>
@@ -884,6 +1294,16 @@
 
   <script>
     const slides = Array.from(document.querySelectorAll('.slide'));
+    slides.forEach((slide) => {
+      const inner = slide.querySelector('.slide-inner');
+      if (inner && !inner.querySelector('.slide-brand')) {
+        inner.insertAdjacentHTML(
+          'afterbegin',
+          '<div class="slide-brand" aria-hidden="true"><img src="src/assets/brand/roadmap-logo-dark.png" alt="" /></div>'
+        );
+      }
+    });
+
     const progressBar = document.querySelector('#progressBar');
     const prevButton = document.querySelector('#prev');
     const nextButton = document.querySelector('#next');
